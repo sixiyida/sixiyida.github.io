@@ -1,66 +1,106 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Tags on Example Site</title>
-        <link>https://example.com/tags/</link>
-        <description>Recent content in Tags on Example Site</description>
+        <title>Tags on sixiyida</title>
+        <link>sixiyida.github.io/tags/</link>
+        <description>Recent content in Tags on sixiyida</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <copyright>Example Person</copyright>
-        <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Css</title>
-        <link>https://example.com/tags/css/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        <copyright>sixiyida</copyright>
+        <lastBuildDate>Wed, 28 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="sixiyida.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Backend Development</title>
+        <link>sixiyida.github.io/tags/backend-development/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/css/</guid>
+        <guid>sixiyida.github.io/tags/backend-development/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>C&#43;&#43;</title>
+        <link>sixiyida.github.io/tags/c&#43;&#43;/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>sixiyida.github.io/tags/c&#43;&#43;/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Css</title>
+        <link>sixiyida.github.io/tags/css/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>sixiyida.github.io/tags/css/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Distributed System</title>
+        <link>sixiyida.github.io/tags/distributed-system/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>sixiyida.github.io/tags/distributed-system/</guid>
         <description></description>
         </item>
         <item>
         <title>Html</title>
-        <link>https://example.com/tags/html/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        <link>sixiyida.github.io/tags/html/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/html/</guid>
+        <guid>sixiyida.github.io/tags/html/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Java</title>
+        <link>sixiyida.github.io/tags/java/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>sixiyida.github.io/tags/java/</guid>
         <description></description>
         </item>
         <item>
         <title>Markdown</title>
-        <link>https://example.com/tags/markdown/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        <link>sixiyida.github.io/tags/markdown/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/markdown/</guid>
+        <guid>sixiyida.github.io/tags/markdown/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Redis</title>
+        <link>sixiyida.github.io/tags/redis/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>sixiyida.github.io/tags/redis/</guid>
         <description></description>
         </item>
         <item>
         <title>Themes</title>
-        <link>https://example.com/tags/themes/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        <link>sixiyida.github.io/tags/themes/</link>
+        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/themes/</guid>
+        <guid>sixiyida.github.io/tags/themes/</guid>
         <description></description>
         </item>
         <item>
         <title>Tag With Whitespaces</title>
-        <link>https://example.com/tags/tag-with-whitespaces/</link>
+        <link>sixiyida.github.io/tags/tag-with-whitespaces/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/tag-with-whitespaces/</guid>
+        <guid>sixiyida.github.io/tags/tag-with-whitespaces/</guid>
         <description></description>
         </item>
         <item>
         <title>Text</title>
-        <link>https://example.com/tags/text/</link>
+        <link>sixiyida.github.io/tags/text/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/text/</guid>
+        <guid>sixiyida.github.io/tags/text/</guid>
         <description></description>
         </item>
         <item>
         <title>Emoji</title>
-        <link>https://example.com/tags/emoji/</link>
+        <link>sixiyida.github.io/tags/emoji/</link>
         <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/emoji/</guid>
+        <guid>sixiyida.github.io/tags/emoji/</guid>
         <description></description>
         </item>
         
