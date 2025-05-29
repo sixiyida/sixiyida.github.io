@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>sixiyida</title>
-        <link>sixiyida.github.io/</link>
+        <link>https://sixiyida.github.io/</link>
         <description>Recent content on sixiyida</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>sixiyida</copyright>
-        <lastBuildDate>Thu, 29 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="sixiyida.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 29 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>About Me</title>
-        <link>sixiyida.github.io/about-me/</link>
+        <link>https://sixiyida.github.io/about-me/</link>
         <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/about-me/</guid>
+        <guid>https://sixiyida.github.io/about-me/</guid>
         <description>&lt;p&gt;Hello, I am sixiyida, a student studying backend development with Java and C++. Here I will post my daily study records and summaries. I am glad to share these with you and hope all of us can make progress together.&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>Redis distributed lock</title>
-        <link>sixiyida.github.io/p/redis-distributed-lock/</link>
+        <link>https://sixiyida.github.io/p/redis-distributed-lock/</link>
         <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/p/redis-distributed-lock/</guid>
-        <description>&lt;img src="sixiyida.github.io/sixiyida.github.io/p/redis-distributed-lock/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Redis distributed lock" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+        <guid>https://sixiyida.github.io/p/redis-distributed-lock/</guid>
+        <description>&lt;img src="https://sixiyida.github.io/p/redis-distributed-lock/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Redis distributed lock" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
 &lt;h2 id=&#34;headings&#34;&gt;Headings
 &lt;/h2&gt;&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
 &lt;h1 id=&#34;h1&#34;&gt;H1
@@ -246,10 +246,10 @@
         </item>
         <item>
         <title>Redis分布式锁</title>
-        <link>sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</link>
+        <link>https://sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</link>
         <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</guid>
+        <guid>https://sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</guid>
         <description>&lt;h2 id=&#34;为什么需要分布式锁&#34;&gt;为什么需要分布式锁？
 &lt;/h2&gt;&lt;p&gt;在单JVM环境中，对于一人一单的场景，可以使用互斥锁实现。但是在负载均衡的集群场景中，需要全局锁，即分布式锁。&lt;/p&gt;
 &lt;p&gt;常见的分布式锁实现方式：MySQL、Redis、Zookeeper。&lt;/p&gt;
@@ -332,10 +332,10 @@
         </item>
         <item>
         <title>日常问题集</title>
-        <link>sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</link>
+        <link>https://sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</link>
         <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</guid>
+        <guid>https://sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</guid>
         <description>&lt;h4 id=&#34;静态代码块初始化&#34;&gt;静态代码块初始化
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -376,19 +376,19 @@
         </item>
         <item>
         <title>Archives</title>
-        <link>sixiyida.github.io/archives/</link>
+        <link>https://sixiyida.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/archives/</guid>
+        <guid>https://sixiyida.github.io/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Placeholder Text</title>
-        <link>sixiyida.github.io/p/placeholder-text/</link>
+        <link>https://sixiyida.github.io/p/placeholder-text/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/p/placeholder-text/</guid>
-        <description>&lt;img src="sixiyida.github.io/sixiyida.github.io/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
+        <guid>https://sixiyida.github.io/p/placeholder-text/</guid>
+        <description>&lt;img src="https://sixiyida.github.io/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
 &lt;p&gt;Redit teque digerit hominumque toris verebor lumina non cervice subde tollit usus habet Arctonque, furores quas nec ferunt. Quoque montibus nunc caluere tempus inhospita parcite confusaque translucet patri vestro qui optatis lumine cognoscere flos nubis! Fronde ipsamque patulos Dryopen deorum.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Exierant elisi ambit vivere dedere&lt;/li&gt;
@@ -415,10 +415,10 @@
         </item>
         <item>
         <title>Math Typesetting</title>
-        <link>sixiyida.github.io/p/math-typesetting/</link>
+        <link>https://sixiyida.github.io/p/math-typesetting/</link>
         <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/p/math-typesetting/</guid>
+        <guid>https://sixiyida.github.io/p/math-typesetting/</guid>
         <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;
 &lt;p&gt;In this example we will be using &lt;a class=&#34;link&#34; href=&#34;https://katex.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KaTeX&lt;/a&gt;&lt;/p&gt;
@@ -449,17 +449,19 @@
 
 &lt;h3 id=&#34;examples&#34;&gt;Examples
 &lt;/h3&gt;&lt;p&gt;Inline math: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p&gt;
+&lt;p&gt;Block math:
+&lt;/p&gt;
 $$
  \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
 $$</description>
         </item>
         <item>
         <title>Emoji Support</title>
-        <link>sixiyida.github.io/p/emoji-support/</link>
+        <link>https://sixiyida.github.io/p/emoji-support/</link>
         <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/p/emoji-support/</guid>
-        <description>&lt;img src="sixiyida.github.io/sixiyida.github.io/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
+        <guid>https://sixiyida.github.io/p/emoji-support/</guid>
+        <description>&lt;img src="https://sixiyida.github.io/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
 &lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/emojify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;code&gt;emojify&lt;/code&gt;&lt;/a&gt; function can be called directly in templates or &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/shortcode-templates/#inline-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Inline Shortcodes&lt;/a&gt;.&lt;/p&gt;
@@ -486,10 +488,10 @@ $$</description>
         </item>
         <item>
         <title>Links</title>
-        <link>sixiyida.github.io/links/</link>
+        <link>https://sixiyida.github.io/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/links/</guid>
+        <guid>https://sixiyida.github.io/links/</guid>
         <description>&lt;p&gt;To use this feature, add &lt;code&gt;links&lt;/code&gt; section to frontmatter.&lt;/p&gt;
 &lt;p&gt;This page&amp;rsquo;s frontmatter:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -521,10 +523,10 @@ $$</description>
         </item>
         <item>
         <title>Search</title>
-        <link>sixiyida.github.io/search/</link>
+        <link>https://sixiyida.github.io/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>sixiyida.github.io/search/</guid>
+        <guid>https://sixiyida.github.io/search/</guid>
         <description></description>
         </item>
         

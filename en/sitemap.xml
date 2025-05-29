@@ -2,171 +2,171 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>sixiyida.github.io/</loc>
+    <loc>https://sixiyida.github.io/</loc>
     <lastmod>2025-05-29T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/"
+                href="https://sixiyida.github.io/zh-cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/"
+                href="https://sixiyida.github.io/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/about-me/</loc>
+    <loc>https://sixiyida.github.io/about-me/</loc>
     <lastmod>2025-05-29T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/%E5%85%B3%E4%BA%8E%E6%88%91/"
+                href="https://sixiyida.github.io/zh-cn/%E5%85%B3%E4%BA%8E%E6%88%91/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/about-me/"
+                href="https://sixiyida.github.io/about-me/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/page/</loc>
+    <loc>https://sixiyida.github.io/page/</loc>
     <lastmod>2025-05-29T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/page/"
+                href="https://sixiyida.github.io/zh-cn/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/page/"
+                href="https://sixiyida.github.io/page/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/categories/backend-development/</loc>
+    <loc>https://sixiyida.github.io/categories/backend-development/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/backend-development/</loc>
+    <loc>https://sixiyida.github.io/tags/backend-development/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/c&#43;&#43;/</loc>
+    <loc>https://sixiyida.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/categories/</loc>
+    <loc>https://sixiyida.github.io/categories/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/categories/"
+                href="https://sixiyida.github.io/zh-cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/categories/"
+                href="https://sixiyida.github.io/categories/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/tags/css/</loc>
+    <loc>https://sixiyida.github.io/tags/css/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/categories/distributed-system/</loc>
+    <loc>https://sixiyida.github.io/categories/distributed-system/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/distributed-system/</loc>
+    <loc>https://sixiyida.github.io/tags/distributed-system/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/html/</loc>
+    <loc>https://sixiyida.github.io/tags/html/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/java/</loc>
+    <loc>https://sixiyida.github.io/tags/java/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/markdown/</loc>
+    <loc>https://sixiyida.github.io/tags/markdown/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/post/</loc>
+    <loc>https://sixiyida.github.io/post/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/post/"
+                href="https://sixiyida.github.io/zh-cn/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/post/"
+                href="https://sixiyida.github.io/post/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/categories/programing/</loc>
+    <loc>https://sixiyida.github.io/categories/programing/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/categories/redis/</loc>
+    <loc>https://sixiyida.github.io/categories/redis/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/redis/</loc>
+    <loc>https://sixiyida.github.io/tags/redis/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/p/redis-distributed-lock/</loc>
+    <loc>https://sixiyida.github.io/p/redis-distributed-lock/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</loc>
+    <loc>https://sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/</loc>
+    <loc>https://sixiyida.github.io/tags/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/tags/"
+                href="https://sixiyida.github.io/zh-cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/tags/"
+                href="https://sixiyida.github.io/tags/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/tags/themes/</loc>
+    <loc>https://sixiyida.github.io/tags/themes/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</loc>
+    <loc>https://sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/archives/</loc>
+    <loc>https://sixiyida.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/p/placeholder-text/</loc>
+    <loc>https://sixiyida.github.io/p/placeholder-text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/tag-with-whitespaces/</loc>
+    <loc>https://sixiyida.github.io/tags/tag-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/categories/test/</loc>
+    <loc>https://sixiyida.github.io/categories/test/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/categories/test/"
+                href="https://sixiyida.github.io/zh-cn/categories/test/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/categories/test/"
+                href="https://sixiyida.github.io/categories/test/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/categories/test-with-whitespaces/</loc>
+    <loc>https://sixiyida.github.io/categories/test-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/text/</loc>
+    <loc>https://sixiyida.github.io/tags/text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/p/math-typesetting/</loc>
+    <loc>https://sixiyida.github.io/p/math-typesetting/</loc>
     <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/tags/emoji/</loc>
+    <loc>https://sixiyida.github.io/tags/emoji/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/p/emoji-support/</loc>
+    <loc>https://sixiyida.github.io/p/emoji-support/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/links/</loc>
+    <loc>https://sixiyida.github.io/links/</loc>
   </url><url>
-    <loc>sixiyida.github.io/search/</loc>
+    <loc>https://sixiyida.github.io/search/</loc>
   </url>
 </urlset>

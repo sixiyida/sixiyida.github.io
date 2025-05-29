@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>sixiyida.github.io/zh-cn/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/"
+                href="https://sixiyida.github.io/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/"
+                href="https://sixiyida.github.io/zh-cn/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/categories/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/categories/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/categories/"
+                href="https://sixiyida.github.io/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/categories/"
+                href="https://sixiyida.github.io/zh-cn/categories/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/p/test-chinese/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/p/test-chinese/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/post/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="sixiyida.github.io/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/post/"
-                />
-  </url><url>
-    <loc>sixiyida.github.io/zh-cn/categories/test/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/post/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/categories/test/"
+                href="https://sixiyida.github.io/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/categories/test/"
+                href="https://sixiyida.github.io/zh-cn/post/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/categories/test/</loc>
+    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://sixiyida.github.io/categories/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://sixiyida.github.io/zh-cn/categories/test/"
+                />
+  </url><url>
+    <loc>https://sixiyida.github.io/zh-cn/categories/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/page/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/page/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/page/"
+                href="https://sixiyida.github.io/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/page/"
+                href="https://sixiyida.github.io/zh-cn/page/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/tags/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/tags/"
+                href="https://sixiyida.github.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/tags/"
+                href="https://sixiyida.github.io/zh-cn/tags/"
                 />
   </url><url>
-    <loc>sixiyida.github.io/zh-cn/%E5%85%B3%E4%BA%8E%E6%88%91/</loc>
+    <loc>https://sixiyida.github.io/zh-cn/%E5%85%B3%E4%BA%8E%E6%88%91/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="sixiyida.github.io/about-me/"
+                href="https://sixiyida.github.io/about-me/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="sixiyida.github.io/zh-cn/%E5%85%B3%E4%BA%8E%E6%88%91/"
+                href="https://sixiyida.github.io/zh-cn/%E5%85%B3%E4%BA%8E%E6%88%91/"
                 />
   </url>
 </urlset>
