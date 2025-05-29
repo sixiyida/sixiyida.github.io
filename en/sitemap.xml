@@ -63,47 +63,19 @@
                 href="https://sixiyida.github.io/categories/"
                 />
   </url><url>
-    <loc>https://sixiyida.github.io/tags/css/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/categories/distributed-system/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://sixiyida.github.io/tags/distributed-system/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/tags/html/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/tags/java/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://sixiyida.github.io/tags/markdown/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://sixiyida.github.io/post/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://sixiyida.github.io/zh-cn/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://sixiyida.github.io/post/"
-                />
   </url><url>
     <loc>https://sixiyida.github.io/categories/programing/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://sixiyida.github.io/categories/redis/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://sixiyida.github.io/tags/redis/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/p/redis-distributed-lock/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</loc>
@@ -122,48 +94,11 @@
                 href="https://sixiyida.github.io/tags/"
                 />
   </url><url>
-    <loc>https://sixiyida.github.io/tags/themes/</loc>
-    <lastmod>2025-05-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</loc>
     <lastmod>2025-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/p/placeholder-text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/tags/tag-with-whitespaces/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/categories/test/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://sixiyida.github.io/zh-cn/categories/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://sixiyida.github.io/categories/test/"
-                />
-  </url><url>
-    <loc>https://sixiyida.github.io/categories/test-with-whitespaces/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/tags/text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/p/math-typesetting/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/tags/emoji/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/p/emoji-support/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/links/</loc>
   </url><url>
