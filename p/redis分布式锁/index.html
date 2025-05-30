@@ -313,6 +313,19 @@
         <li><a href="#加锁">加锁</a></li>
         <li><a href="#解锁">解锁</a></li>
         <li><a href="#误删问题">误删问题</a></li>
+        <li><a href="#基于setnx实现的分布式锁的问题">基于setnx实现的分布式锁的问题</a></li>
+      </ol>
+    </li>
+    <li><a href="#redisson">Redisson</a>
+      <ol>
+        <li><a href="#redisson分布式锁原理">Redisson分布式锁原理</a>
+          <ol>
+            <li><a href="#基于lua脚本的可重入">基于Lua脚本的可重入</a></li>
+            <li><a href="#可重试">可重试</a></li>
+            <li><a href="#锁续期">锁续期</a></li>
+            <li><a href="#multilock">MultiLock</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -441,7 +454,7 @@
 </div>
 </div><h3 id="误删问题">误删问题
 </h3><p>由于可能出现线程阻塞超时自动释放，且锁在当前线程恢复之前被其他线程获取，该线程恢复之后如果直接释放锁，会释放其他线程获取的分布式锁，出现混乱。</p>
-<p>解决方法：</p>
+<p><strong>解决方法：</strong></p>
 <ol>
 <li>判断锁所有权，再删除。问题：当判断所有权之后如果线程阻塞，同样会出现上述问题。</li>
 <li>将1中操作变成原子的，使用Redis提供的Lua脚本。</li>
@@ -476,7 +489,98 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><h3 id="基于setnx实现的分布式锁的问题">基于setnx实现的分布式锁的问题
+</h3><ol>
+<li><strong>不可重入</strong>：同线程无法多次获取同一把锁，可能会导致同线程不同方法相互依赖导致死锁。</li>
+<li><strong>不可重试</strong>：获取锁失败没有重试机制</li>
+<li><strong>超时释放</strong>：执行时间长可能导致锁意外自动超时释放。</li>
+<li><strong>主从一致性</strong>：加锁后主节点宕机，从节点未同步，导致重复获取锁。</li>
+</ol>
+<h2 id="redisson">Redisson
+</h2><p>基于Redis实现的分布式工具。</p>
+<p>Step0：Maven添加依赖</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.redisson<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>redisson<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>3.22.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>**Step1：**注入RedissonClient</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RedissonConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RedissonClient</span><span class="w"> </span><span class="nf">redissonClient</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Config</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Config</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">config</span><span class="p">.</span><span class="na">useSingleServer</span><span class="p">().</span><span class="na">setAddress</span><span class="p">(</span><span class="s">&#34;redis://localhost:6379&#34;</span><span class="p">).</span><span class="na">setPassword</span><span class="p">(</span><span class="s">&#34;password&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Redisson</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">config</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>**Step2：**使用工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RLock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redissonClient</span><span class="p">.</span><span class="na">getLock</span><span class="p">(</span><span class="n">RedisConstants</span><span class="p">.</span><span class="na">ORDER_LOCK_KEY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="redisson分布式锁原理">Redisson分布式锁原理
+</h3><h4 id="基于lua脚本的可重入">基于Lua脚本的可重入
+</h4><p>利用hash结构，记录线程id和引用次数。</p>
+<p>加锁：判断是否为当前线程id，如果是，则引用计数+1，重置锁有效期。</p>
+<p>解锁：判断是否为当前线程id，如果不是，不用处理；如果是，则引用计数-1并重置锁有效期。最后判断如果引用计数为0，则释放锁。</p>
+<h4 id="可重试">可重试
+</h4><p>在解锁时使用信号量/Pub，通知解锁。</p>
+<p>加锁失败后若有剩余等待时间，收到解锁信号后，异步重试。</p>
+<h4 id="锁续期">锁续期
+</h4><p>加锁成功后启动后台线程Watchdog，每10秒检查锁是否被持有，若持有则续期为30秒。</p>
+<h4 id="multilock">MultiLock
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Rlock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redissonClient</span><span class="p">.</span><span class="na">getMulitLock</span><span class="p">(</span><span class="n">lock1</span><span class="p">,</span><span class="w"> </span><span class="n">lock2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>原理：</strong></p>
+<p><strong>获取锁</strong>：<strong>遍历获取 + 失败回滚</strong></p>
+<p>建立锁List，遍历获取锁，遍历时分配每个锁的等待时间。</p>
+<p>若出现获取失败，则释放所有已经获取的锁，并返回失败。</p>
+<p>如果所有锁获取成功则返回成功。</p>
+<p><strong>解锁：遍历释放 + 异常容忍</strong></p>
+<p>遍历所有锁并逐一释放（无论是否属于当前线程）。</p>
+<p>即使某个锁释放失败（如锁已超时），仍继续释放其他锁，最大限度避免死锁。</p>
+
 </section>
 
 
@@ -519,6 +623,32 @@
     <h2 class="section-title">Related content</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/spring%E5%8F%8Aspringboot/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Spring及SpringBoot</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/mysql/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MySQL</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="">

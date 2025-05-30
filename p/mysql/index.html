@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Note for MySQL">
+<title>MySQL</title>
+
+<link rel='canonical' href='https://sixiyida.github.io/p/mysql/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="MySQL">
+<meta property='og:description' content="Note for MySQL">
+<meta property='og:url' content='https://sixiyida.github.io/p/mysql/'>
+<meta property='og:site_name' content='sixiyida'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MySQL' /><meta property='article:tag' content='DataBase' /><meta property='article:tag' content='Backend Development' /><meta property='article:published_time' content='2025-05-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-28T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="MySQL">
+<meta name="twitter:description" content="Note for MySQL">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_599050889a64db87.png" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😀</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">sixiyida</a></h1>
+            <h2 class="site-description">sixiyida&#39;s notes</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/sixiyida'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.xiaohongshu.com/user/profile/6329e87e000000002303d3d3'
+                        target="_blank"
+                        title="RedBook"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   sodipodi:docname="XiaohongshuLOGO.png"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.6914062"
+     inkscape:cx="127.81422"
+     inkscape:cy="128"
+     inkscape:window-width="1600"
+     inkscape:window-height="928"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <path
+       style="fill:#ff2842;stroke:none"
+       d="M 29,0.33332825 C 13.959937,3.4666748 1.5356731,15.204498 0,31 -1.586103,47.314209 0,64.597672 0,81 v 102 c 0,18.76035 -4.7369685,44.19888 7.3333335,60 C 20.372129,260.06897 44.156731,256 63,256 h 111 35 c 5.78276,0 12.33244,0.84741 18,-0.33333 15.0401,-3.13336 27.46432,-14.87115 29,-30.66667 1.58612,-16.31419 0,-33.59769 0,-50 V 73 C 256,54.239685 260.73697,28.801102 248.66667,13 235.62787,-4.0689697 211.84329,0 193,0 H 82 47 C 41.217228,0 34.667561,-0.84741211 29,0.33332825 M 120,91 l -7,19 h 12 l -10,24 9,1 c -0.98794,2.68155 -2.31718,7.73317 -4.33334,9.83334 C 118.18945,146.3721 115.92654,146 114,146 c -4.35942,0 -13.16798,1.80539 -15.5,-3 -1.069664,-2.20416 0.465553,-4.98451 1.333336,-7 1.813624,-4.21228 4.222554,-8.51549 5.166664,-13 -2.17548,0 -4.92464,0.42967 -7,-0.33333 -7.778526,-2.85974 0.874031,-15.36435 2.66666,-19.66667 1.25875,-3.020981 2.75652,-9.584732 5.5,-11.5 C 110.01874,88.810822 115.88325,90.674988 120,91 m -79,63 c 2.750713,0 6.837379,0.81721 8.5,-2 1.769028,-2.99753 0.5,-9.58963 0.5,-13 V 106 C 50,102.90659 48.438198,93.464493 51.166668,91.5 53.41069,89.884308 62.832935,90.226166 63.833332,93 65.47065,97.539825 64,105.16241 64,110 v 32 c 0,5.48389 0.949112,11.8645 -1.333332,17 -2.177158,4.89861 -12.303417,9.27243 -17.333336,5.5 C 43.120155,162.84012 41.545292,156.59013 41,154 M 193,91 v 5 c 3.72887,0 8.4108,-0.763367 12,0.333328 11.97635,3.659424 11,15.422502 11,25.666672 1.99706,0 4.04419,-0.15562 6,0.33333 11.49335,2.87334 10,14.36401 10,23.66667 0,4.95615 0.93086,10.82184 -2.33333,15 -3.59567,4.60246 -9.48195,4 -14.66667,4 -1.6116,0 -4.26318,0.51051 -5.66667,-0.5 -2.62326,-1.88875 -3.78159,-7.50485 -4.33333,-10.5 3.28711,0 9.2179,1.12517 11.83333,-1.33334 C 219.9164,149.76859 218.65411,138.43454 215,136.5 c -1.93661,-1.02527 -4.88672,-0.5 -7,-0.5 h -15 v 29 h -14 v -29 h -14 v -14 h 14 v -12 h -9 V 96 h 9 v -5 h 14 m -32,5 v 14 h -8 v 42 h 13 v 13 H 120 L 125.33334,152.5 138,152 v -42 h -8 V 96 h 31 m 57,14 c 0,-2.84204 -0.51608,-6.25871 0.33333,-9 3.34434,-10.793121 19.61577,-2.093994 11.5,6.83333 -0.92279,1.01507 -2.54419,1.51106 -3.83333,1.83334 C 223.43948,110.30679 220.61993,110 218,110 M 41,110 36.833332,147 30,159 24,143 27,110 h 14 m 46,0 3,33 -6,15 h -2 c -5.366936,-8.49765 -6.053299,-17.26251 -7,-27 -0.672195,-6.91406 -2,-14.04004 -2,-21 h 14 m 106,0 v 12 h 9 v -12 h -9 m -75,42 -5,13 H 91 L 96.333336,151.5 104,151.66666 Z"
+       id="path1" />
+  </g>
+</svg>
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://sixiyida.github.io/" selected>English</option>
+                                
+                                    <option value="https://sixiyida.github.io/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#锁">锁</a>
+          <ol>
+            <li><a href="#行级锁">行级锁</a></li>
+            <li><a href="#死锁的形成">死锁的形成</a></li>
+            <li><a href="#insert语句加行级锁">insert语句加行级锁</a></li>
+            <li><a href="#避免死锁的方法">避免死锁的方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#日志">日志</a>
+          <ol>
+            <li><a href="#undo-log">undo log</a></li>
+            <li><a href="#bufferpool">bufferpool</a></li>
+            <li><a href="#redolog">redolog</a></li>
+            <li><a href="#binlog">binlog</a></li>
+            <li><a href="#bufferpool-1">BufferPool</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/backend-development/" >
+                Backend Development
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/mysql/">MySQL</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Note for MySQL
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 28, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="锁">锁
+</h3><h4 id="行级锁">行级锁
+</h4><p>**行级锁：**在select for update等场景，即当前读（另一种是快照读MVCC）场景使用。</p>
+<p>包括Record Lock, Gap Lock 和 Next-key Lock(前两种的合并)</p>
+<p>包括X(Exclusive)和S(share)两种</p>
+<p>Gap Lock是只锁相邻两条记录之间的()，NK-lock是锁(]</p>
+<p>Gap Lock的X和S型是一样的，都可以重复获取，NK-lock要看右区间的记录锁是否互斥，无限除外。</p>
+<h5 id="怎么加mysql8026-可重复读">怎么加？（MySQL8.0.26, 可重复读）
+</h5><p>对索引加，基本单位是nk-lock，不同情况可能出现退化为前两种</p>
+<p><strong>主键索引等值查询：</strong></p>
+<p>记录存在-&gt;退化为记录</p>
+<p>记录不存在-&gt;退化为间隙锁</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">data_locks</span><span class="w"> </span><span class="o">//</span><span class="err">查加了什么锁</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果MODE是GAP， LOCK_DATA是右区间界。</p>
+<p><strong>主键索引范围查询：</strong></p>
+<p>大于：不退化</p>
+<p>大于等于：如果等于存在，则左边退化为记录锁，不存在则不退化</p>
+<p>小于：最右侧退化为间隙锁</p>
+<p>小于等于：若等于存在，则不退化，不存在则最右侧退化为间隙锁</p>
+<p>**注：**记录锁属于记录，在GAP锁中是属于LOCK_DATA，右区间界的记录。</p>
+<p><strong>二级索引（非唯一）等值查询：</strong></p>
+<p>记录不存在：二级索引上GAPLOCK，对于左右端点，能否插入要看二级索引B+树下一条记录有无GAPLOCK</p>
+<p>记录不存在的<strong>特殊情况</strong>：如果是超过了最大id，是next-keyLock</p>
+<p>注：二级索引GAPLOCK的LOCK_DATA包含<strong>两个值</strong>，二级索引和回表的主键索引</p>
+<p>记录存在：对二级索引匹配的记录加nk锁，对不匹配的第一个nk锁退化为间隙锁，且在主键索引加记录锁。</p>
+<p>对于端点是否能插入，和要看二级索引B+树下一条记录有无LOCK</p>
+<p>在不匹配的第一个索引加nk锁的目的：防止幻读（id &gt; lock_id）的情况</p>
+<p><strong>二级索引（非唯一）范围查询：不退化，二级的nk和主键的记录锁都加</strong></p>
+<p><strong>如果不走索引全表扫描，则所有记录全部加nk锁，全锁，是事故</strong></p>
+<p>解决方案：将sql_safe_updates设置为1，此时必须使用where+索引 / limit</p>
+<p>当前读的语句：update、delete、select for update，会加意向锁和行锁</p>
+<h4 id="死锁的形成">死锁的形成
+</h4><p>例子：如果两个事务都获取了间隔锁，且希望插入对方间隔，则尝试获取插入意向锁（和间隔锁互斥），环路等待导致死锁。</p>
+<h4 id="insert语句加行级锁">insert语句加行级锁
+</h4><p>**记录之间有间隙锁：**加插入意向锁</p>
+<p>注：mysql的锁是先生成锁结构，锁此时是等待状态，再获取锁，如果不能获取则阻塞。</p>
+<p>**唯一键（主键或唯一二级索引）冲突：**失败后加S型锁</p>
+<p>主键：加S记录锁</p>
+<p>唯一二级索引：加S型NK锁</p>
+<p>例子：在select for update中，尝试加X型锁，和S型冲突，所以失败。</p>
+<p><strong>并发insert导致的唯一键冲突</strong></p>
+<p>第一个insert但事务没提交时，构造隐式锁。</p>
+<p>第二个insert时，隐式锁变成X型锁，和第二个insert想要获取的S型nk锁冲突</p>
+<h4 id="避免死锁的方法">避免死锁的方法
+</h4><p><strong>设置事务等待回滚时间</strong>：超时回滚</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">innodb_lock_wait_timeout = 50 // default
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>开启主动死锁检测：主动回滚</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">innodb_deadlock_detect = on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="日志">日志
+</h3><p>保证ACID特性：Atomic, Consisitency, isolation, duration</p>
+<h4 id="undo-log">undo log
+</h4><p>注：对于增删改语句，innodb会隐式启动事务。</p>
+<p>特殊处理：delete只在记录上打标记，真正删除由purge线程完成</p>
+<p>update非主键列：直接update，且在undolog中记录update之前的值</p>
+<p>update主键列：先删再插</p>
+<p><strong>undolog的存储形式：由roll_pointer指针形成链表穿起来</strong></p>
+<h4 id="bufferpool">bufferpool
+</h4><p>指的是innodb引擎中的内存bufferpool。</p>
+<p>类似于pagecache，由后台线程实现脏页写回机制。</p>
+<p>内存结构：首先申请连续的内存空间，接着按照16kb大小划分出缓存页。</p>
+<p>包括数据页、索引页、undo页、插入缓存页、自适应哈希索引、锁信息等。</p>
+<h4 id="redolog">redolog
+</h4><p>**redolog的作用：**对修改实现持久化。</p>
+<p>WAL技术(write-ahead logging)：在写入磁盘之前先写入redolog。</p>
+<p>每对Bufferpool进行修改就写入redolog，包括undolog的修改</p>
+<p><strong>redolog和undolog对比：</strong></p>
+<p>redolog是记录<strong>修改后</strong>，保证<strong>持久化</strong></p>
+<p>undolog是记录<strong>修改前</strong>，保证<strong>原子化</strong></p>
+<p><strong>写入数据和写入redolog对比：</strong></p>
+<p>redolog：是顺序写入，<strong>高效</strong></p>
+<p>数据：是随机写入，<strong>低效</strong></p>
+<p>redolog也有buffer，落盘时机：</p>
+<p>mysql正常关闭，buffer空间超过一半，每一秒写回一次。</p>
+<p>innodb_flush_log_at_trx_commit参数：提交事务时的行为</p>
+<p>0：不写回，后台线程每隔一秒用write()和fsync()</p>
+<p>1：直接持久化到磁盘</p>
+<p>2：写入文件（pagecache）由操作系统写回，后台线程每隔一秒用fsync()</p>
+<p>redolog存储方式：两个redolog文件循环存储类似于环形队列。</p>
+<p>有个tail和head，在tail处写，持久化bufferpool进入数据后更新head。</p>
+<h4 id="binlog">binlog
+</h4><p><strong>Server层</strong>的日志， 用于备份恢复、主从复制。三种格式类型：</p>
+<p>STATEMENT：记录SQL语句逻辑操作</p>
+<p>ROW：记录行数据最终修改情况</p>
+<p>MIXED：根据情况使用STATEMENT或者ROW</p>
+<p>使用追加写，写满文件就创建新文件继续写，全量日志。</p>
+<h5 id="主从复制">主从复制
+</h5><p>主库server层直接写入binlog，后台log dump线程异步将binlog日志发给从库，从库relaylog记录binlog，后台线程异步执行relaylog。</p>
+<p>**从库的数量选择：**对主库的资源消耗、网络带宽。</p>
+<p><strong>其他模型：</strong></p>
+<p>同步模型：要所有从库relaylog记录完毕后返回成功，主库再返回客户端。没法用</p>
+<p>异步模型：默认模型，主库宕机就gg</p>
+<p>半同步：一部分库返回成功即可。</p>
+<p><strong>binlog也有cache，每个线程各一个。</strong></p>
+<p>持久化的时机：</p>
+<p>binlog_cache_size：超过这个大小就写入</p>
+<p>sync_binlog：</p>
+<p>0：只write，操作系统控制写回</p>
+<p>1：write+fsync</p>
+<p>n：write，累积n个以后fsync</p>
+<p>注：binlog在语句执行完成后在记录。事务提交时候才持久化。</p>
+<h5 id="两阶段提交">两阶段提交
+</h5><p>问题：如果redolog和binlog一个完成一个不完成，则会出现主从不一致的问题。</p>
+<p>内部XA事务：在事务提交后开启，由binlog协调。</p>
+<p>将redolog写入拆为prepare和commit，中间插入binlog持久化。</p>
+<p>prepare：将内部XID写入redolog并持久化，将状态设置为prepare。</p>
+<p>commit：将内部XID写入binlog并持久化，接着将redolog设置为commit。</p>
+<p>崩溃时，redolog处于prepare状态，检查binlog中有无XA事务的id，有则提交事务，无则回滚。</p>
+<p>**问题：**性能差</p>
+<p>磁盘IO次数高</p>
+<p>在多事务下，不能保证两者提交顺序一致，需要加锁以保证提交的原子性</p>
+<p>上述问题：binlog组提交机制</p>
+<p>分为flush(write)、sync(fsync)、commit阶段，每个阶段都有队列，用锁保证事务写入顺序。</p>
+<p>redolog的组提交机制</p>
+<p>将redolog刷盘延迟到flush阶段中</p>
+<h4 id="bufferpool-1">BufferPool
+</h4><p>default = 128MB</p>
+<p>each page 16kb</p>
+<p>结构：控制块1到n，接着page1到n</p>
+<p>注：查询时候直接将innodb的整个页加载至bufferpool中，然后在bufferpool中通过页目录定位记录</p>
+<p><strong>FREE链表</strong>：管理空闲页，节点是控制块，头结点包括链表头尾地址和控制块数量。</p>
+<p><strong>FLUSH链表</strong>：管理空闲页，节点是控制块，头结点包括链表头尾地址和控制块数量。</p>
+<p><strong>如何管理bufferpool：</strong></p>
+<p><strong>传统LRU问题：</strong></p>
+<p>**预读失效：**预读时会把相邻的数据页一并加载，为了减少磁盘IO，如果这些没有被访问，且淘汰末尾页，则降低缓存命中率。</p>
+<p>**解决方法：**划分LRU的优先级，前面是YOUNG，后面是OLD，预读先加入OLD，真正访问才加入YOUNG区域。</p>
+<p>**缓存污染：**当扫描大量数据，会淘汰大量热数据，导致命中率下降。</p>
+<p>**解决方法：**提高加入YOUNG的门槛，记录第一次OLD被访问的时间，如果后续访问时间超过第一次1s，则放入young区域。</p>
+<p>**Linux的做法：**第二次的时候将才升级到active，比MYSQL简单。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mysql/">MySQL</a>
+        
+            <a href="/tags/database/">DataBase</a>
+        
+            <a href="/tags/backend-development/">Backend Development</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/spring%E5%8F%8Aspringboot/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Spring及SpringBoot</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Redis分布式锁</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">日常问题集</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 sixiyida
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
