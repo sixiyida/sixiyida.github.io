@@ -314,6 +314,7 @@
             <li><a href="#静态代码块初始化">静态代码块初始化</a></li>
             <li><a href="#非静态成员变量初始化">非静态成员变量初始化</a></li>
             <li><a href="#springboot中的classpath">SpringBoot中的classpath</a></li>
+            <li><a href="#aop的内部调用问题">AOP的内部调用问题</a></li>
           </ol>
         </li>
       </ol>
@@ -423,10 +424,15 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>在类首次加载时执行一次，如通过new创建对象、访问静态成员或反射加载类时触发</li>
-<li>多个静态代码块按定义顺序依次执行</li>
-<li>可以进行复杂逻辑初始化</li>
-<li></li>
+<li>
+<p>在类首次加载时执行一次，如通过new创建对象、访问静态成员或反射加载类时触发</p>
+</li>
+<li>
+<p>多个静态代码块按定义顺序依次执行</p>
+</li>
+<li>
+<p>可以进行复杂逻辑初始化</p>
+</li>
 </ul>
 <h4 id="非静态成员变量初始化">非静态成员变量初始化
 </h4><p>在对象创建时完成，顺序为<strong>声明赋值 → 初始化块 → 构造函数</strong>，每种与代码书写顺序一致。</p>
@@ -441,6 +447,18 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>ClassPathResource对应main/resources目录下文件。</p>
+<h4 id="aop的内部调用问题">AOP的内部调用问题
+</h4><p>在使用AOP的场景中，如@Transactional，如果使用this指针调用内部方法，会绕过代理导致AOP失效。</p>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li>使用<code>AopContext.currentProxy()</code>直接获取当前代理对象，原理是通过 ThreadLocal 存储当前线程的代理对象。</li>
+</ol>
+<p><strong>缺陷</strong>：在多线程场景下，如果子线程调用父线程的事务函数，由于ThreadLocal不互通，导致无法获取代理对象，事务失效。</p>
+<h5 id="缺陷的解决方法直接在主线程中将获取的代理对象传给子线程任务">缺陷的解决方法：直接在主线程中将获取的代理对象传给子线程任务。
+</h5><ol start="2">
+<li>直接使用<code>@Autowired</code>将自身注入。</li>
+</ol>
+<p>缺陷：循环依赖风险，三级缓存性能低。</p>
 
 </section>
 
