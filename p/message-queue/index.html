@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Note for Spring and SpringBoot">
-<title>Spring及SpringBoot</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Note for message queue">
+<title>Message Queue</title>
 
-<link rel='canonical' href='https://sixiyida.github.io/p/spring%E5%8F%8Aspringboot/'>
+<link rel='canonical' href='https://sixiyida.github.io/p/message-queue/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Spring及SpringBoot">
-<meta property='og:description' content="Note for Spring and SpringBoot">
-<meta property='og:url' content='https://sixiyida.github.io/p/spring%E5%8F%8Aspringboot/'>
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Message Queue">
+<meta property='og:description' content="Note for message queue">
+<meta property='og:url' content='https://sixiyida.github.io/p/message-queue/'>
 <meta property='og:site_name' content='sixiyida'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Backend Development' /><meta property='article:tag' content='Spring' /><meta property='article:tag' content='SpringBoot' /><meta property='article:published_time' content='2025-05-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-30T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="Spring及SpringBoot">
-<meta name="twitter:description" content="Note for Spring and SpringBoot">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Distributed System' /><meta property='article:tag' content='Backend Development' /><meta property='article:tag' content='Message Queue' /><meta property='article:published_time' content='2025-05-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-28T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Message Queue">
+<meta name="twitter:description" content="Note for message queue">
     </head>
     <body class="
     article-page
@@ -309,7 +309,14 @@
   <ol>
     <li>
       <ol>
-        <li><a href="#configuration和component">@Configuration和@Component</a></li>
+        <li><a href="#为什么需要消息队列">为什么需要消息队列？</a></li>
+        <li><a href="#redis消息队列">Redis消息队列</a>
+          <ol>
+            <li><a href="#1-基于list">1. 基于List</a></li>
+            <li><a href="#2-基于pubsub">2. 基于Pub/Sub</a></li>
+            <li><a href="#3-基于stream">3. 基于Stream</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -334,21 +341,17 @@
                 Backend Development
             </a>
         
-            <a href="/categories/java/" >
-                Java
-            </a>
-        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/spring%E5%8F%8Aspringboot/">Spring及SpringBoot</a>
+            <a href="/p/message-queue/">Message Queue</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Note for Spring and SpringBoot
+            Note for message queue
         </h3>
         
     </div>
@@ -369,7 +372,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">May 30, 2025</time>
+                <time class="article-time--published">May 28, 2025</time>
             </div>
         
 
@@ -399,48 +402,117 @@
     <section class="article-content">
     
     
-    <h3 id="configuration和component">@Configuration和@Component
-</h3><p><strong>@Configuration</strong>自身也是一个Bean，默认启用 CGLIB 代理（<code>proxyBeanMethods=true</code>）。当配置类中的 <code>@Bean</code> 方法相互调用时，Spring 会拦截调用并返回容器中的<strong>单例 Bean</strong>，而非重新创建，可直接注入方法参数的Bean。</p>
+    <h3 id="为什么需要消息队列">为什么需要消息队列？
+</h3><p>在异步任务，如生产者-消费者模型中，两者的运行速度并不相同，使用消息队列可以做一个缓冲，减小系统压力。</p>
+<h3 id="redis消息队列">Redis消息队列
+</h3><h4 id="1-基于list">1. 基于List
+</h4><p>Redis的list数据结构是一个双向链表，利用<code>LPUSH</code>和<code>RPOP</code>实现，若需要阻塞，使用<code>BRPOP</code>实现阻塞队列效果</p>
+<p><strong>缺陷</strong>：每次取出消息直接从队列中移除，造成</p>
+<ol>
+<li>无法避免消息丢失：移除后如果宕机，则消息丢失。</li>
+<li>无法有多消费者：只能消费一次并移除，无法多次消费。</li>
+</ol>
+<h4 id="2-基于pubsub">2. 基于Pub/Sub
+</h4><p>类似ROS：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Config</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="nf">a</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">A</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="nf">b</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">a</span><span class="p">());</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// 注入容器中的单例A</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SUBSCRIBE channel [channel] 
+</span></span><span class="line"><span class="cl">PUBLISH channel msg
+</span></span><span class="line"><span class="cl">PSUBSCRIBE pattern [pattern] // 订阅匹配pattern的所有频道
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>@Component</strong>无代理机制。方法间调用视为普通 Java 方法，每次调用 <code>@Bean</code> 方法都会<strong>创建新实例</strong>，破坏单例， 依赖注入需要显式@Autowired：</p>
+</div><p><strong>缺陷</strong>：每次取出消息直接从队列中移除，造成</p>
+<ol>
+<li>不支持数据持久化：数据不在Redis（内存）中保存。</li>
+<li>无法避免消息丢失：如上。</li>
+<li>消息堆积有上限，超出时丢失：只在消费者处缓存，有上限。</li>
+</ol>
+<h4 id="3-基于stream">3. 基于Stream
+</h4><p>Stream是一种为消息队列设计的数据类型。</p>
+<h5 id="基本添加读取消息">基本添加/读取消息
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">XADD users * name jack age 21 // 向user发{name = jack, age = 21}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/message-queue/stream.png"
+	width="1572"
+	height="213"
+	srcset="/p/message-queue/stream_hu_7e20dd5e9822ab68.png 480w, /p/message-queue/stream_hu_d49a0456e8654272.png 1024w"
+	loading="lazy"
+	
+		alt="stream"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="738"
+		data-flex-basis="1771px"
+	
+></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Component</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ComponentConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="nf">a</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">A</span><span class="p">();</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="nf">b</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">a</span><span class="p">());</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// 每次调用a()创建新实例！</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">XREAD COUNT 1 BLOCK 2000 STREAMS users $ // 读users最新的1个消息，无消息阻塞2秒
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/message-queue/read.png"
+	width="1474"
+	height="295"
+	srcset="/p/message-queue/read_hu_1f1aaebb68b4f0a.png 480w, /p/message-queue/read_hu_5535dc8fe45dfaf2.png 1024w"
+	loading="lazy"
+	
+		alt="read"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="499"
+		data-flex-basis="1199px"
+	
+></p>
+<h5 id="消费者组">消费者组
+</h5><p><strong>特点：</strong></p>
+<ol>
+<li><strong>消息分流</strong>：队列中消息分流而不是重复消费，加快速度。</li>
+<li><strong>消息表示</strong>：记录最后一个被处理的消息，宕机后也能恢复。</li>
+<li><strong>消息确认</strong>：消息被获取后存入pending-list，必须要消费者使用XACK确认消息，才会移除。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">XGROUP CREATE mqName groupName ID [MKSTREAM] // ID(0):第一个消息/ID($):最后一个消息
+</span></span><span class="line"><span class="cl">// 为mqName创建名为groupName的消费者组
+</span></span><span class="line"><span class="cl">XGROUP DESTROY mqName groupName
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">XGROUP CREATECONSUMER mqName groupName consumerName
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">XGROUP DELCONSUMER mqName groupName consumerName
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">XREADGROUP GROUP group consumer [COUNT count] [BLOCK milliseconds] [NOACK] STREAMS mqName [mqName ...] ID [ID ...] //ID为获取消息起始id
+</span></span><span class="line"><span class="cl">//&#34;&gt;&#34; : 从未消费消息开始
+</span></span><span class="line"><span class="cl">//“数字”: 从pending-list中第一个消息开始
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </section>
@@ -450,11 +522,11 @@
     
     <section class="article-tags">
         
+            <a href="/tags/distributed-system/">Distributed System</a>
+        
             <a href="/tags/backend-development/">Backend Development</a>
         
-            <a href="/tags/spring/">Spring</a>
-        
-            <a href="/tags/springboot/">SpringBoot</a>
+            <a href="/tags/message-queue/">Message Queue</a>
         
     </section>
 
@@ -488,6 +560,19 @@
             
                 
 <article class="">
+    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Redis分布式锁</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/spring%E7%9B%B8%E5%85%B3/">
         
         
@@ -507,19 +592,6 @@
 
         <div class="article-details">
             <h2 class="article-title">MySQL</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Redis分布式锁</h2>
         </div>
     </a>
 </article>

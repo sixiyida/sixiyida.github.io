@@ -61,11 +61,11 @@
 &lt;li&gt;使用&lt;code&gt;AopContext.currentProxy()&lt;/code&gt;直接获取当前代理对象，原理是通过 ThreadLocal 存储当前线程的代理对象。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;缺陷&lt;/strong&gt;：在多线程场景下，如果子线程调用父线程的事务函数，由于ThreadLocal不互通，导致无法获取代理对象，事务失效。&lt;/p&gt;
-&lt;h5 id=&#34;缺陷的解决方法直接在主线程中将获取的代理对象传给子线程任务&#34;&gt;缺陷的解决方法：直接在主线程中将获取的代理对象传给子线程任务。
-&lt;/h5&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;p&gt;&lt;strong&gt;缺陷的解决方法：直接在主线程中将获取的代理对象传给子线程任务。&lt;/strong&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;直接使用&lt;code&gt;@Autowired&lt;/code&gt;将自身注入。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;缺陷：循环依赖风险，三级缓存性能低。&lt;/p&gt;
+&lt;p&gt;**缺陷：**循环依赖风险，三级缓存性能低。&lt;/p&gt;
 </description>
         </item>
         <item>
