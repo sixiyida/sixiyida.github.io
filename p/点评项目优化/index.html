@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="optimization for comment project">
+<title>点评项目优化</title>
+
+<link rel='canonical' href='https://sixiyida.github.io/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="点评项目优化">
+<meta property='og:description' content="optimization for comment project">
+<meta property='og:url' content='https://sixiyida.github.io/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/'>
+<meta property='og:site_name' content='sixiyida'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Redis' /><meta property='article:tag' content='Backend Development' /><meta property='article:tag' content='Message Queue' /><meta property='article:published_time' content='2025-06-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-01T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="点评项目优化">
+<meta name="twitter:description" content="optimization for comment project">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_599050889a64db87.png" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😀</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">sixiyida</a></h1>
+            <h2 class="site-description">sixiyida&#39;s notes</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/sixiyida'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.xiaohongshu.com/user/profile/6329e87e000000002303d3d3'
+                        target="_blank"
+                        title="RedBook"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   sodipodi:docname="XiaohongshuLOGO.png"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.6914062"
+     inkscape:cx="127.81422"
+     inkscape:cy="128"
+     inkscape:window-width="1600"
+     inkscape:window-height="928"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <path
+       style="fill:#ff2842;stroke:none"
+       d="M 29,0.33332825 C 13.959937,3.4666748 1.5356731,15.204498 0,31 -1.586103,47.314209 0,64.597672 0,81 v 102 c 0,18.76035 -4.7369685,44.19888 7.3333335,60 C 20.372129,260.06897 44.156731,256 63,256 h 111 35 c 5.78276,0 12.33244,0.84741 18,-0.33333 15.0401,-3.13336 27.46432,-14.87115 29,-30.66667 1.58612,-16.31419 0,-33.59769 0,-50 V 73 C 256,54.239685 260.73697,28.801102 248.66667,13 235.62787,-4.0689697 211.84329,0 193,0 H 82 47 C 41.217228,0 34.667561,-0.84741211 29,0.33332825 M 120,91 l -7,19 h 12 l -10,24 9,1 c -0.98794,2.68155 -2.31718,7.73317 -4.33334,9.83334 C 118.18945,146.3721 115.92654,146 114,146 c -4.35942,0 -13.16798,1.80539 -15.5,-3 -1.069664,-2.20416 0.465553,-4.98451 1.333336,-7 1.813624,-4.21228 4.222554,-8.51549 5.166664,-13 -2.17548,0 -4.92464,0.42967 -7,-0.33333 -7.778526,-2.85974 0.874031,-15.36435 2.66666,-19.66667 1.25875,-3.020981 2.75652,-9.584732 5.5,-11.5 C 110.01874,88.810822 115.88325,90.674988 120,91 m -79,63 c 2.750713,0 6.837379,0.81721 8.5,-2 1.769028,-2.99753 0.5,-9.58963 0.5,-13 V 106 C 50,102.90659 48.438198,93.464493 51.166668,91.5 53.41069,89.884308 62.832935,90.226166 63.833332,93 65.47065,97.539825 64,105.16241 64,110 v 32 c 0,5.48389 0.949112,11.8645 -1.333332,17 -2.177158,4.89861 -12.303417,9.27243 -17.333336,5.5 C 43.120155,162.84012 41.545292,156.59013 41,154 M 193,91 v 5 c 3.72887,0 8.4108,-0.763367 12,0.333328 11.97635,3.659424 11,15.422502 11,25.666672 1.99706,0 4.04419,-0.15562 6,0.33333 11.49335,2.87334 10,14.36401 10,23.66667 0,4.95615 0.93086,10.82184 -2.33333,15 -3.59567,4.60246 -9.48195,4 -14.66667,4 -1.6116,0 -4.26318,0.51051 -5.66667,-0.5 -2.62326,-1.88875 -3.78159,-7.50485 -4.33333,-10.5 3.28711,0 9.2179,1.12517 11.83333,-1.33334 C 219.9164,149.76859 218.65411,138.43454 215,136.5 c -1.93661,-1.02527 -4.88672,-0.5 -7,-0.5 h -15 v 29 h -14 v -29 h -14 v -14 h 14 v -12 h -9 V 96 h 9 v -5 h 14 m -32,5 v 14 h -8 v 42 h 13 v 13 H 120 L 125.33334,152.5 138,152 v -42 h -8 V 96 h 31 m 57,14 c 0,-2.84204 -0.51608,-6.25871 0.33333,-9 3.34434,-10.793121 19.61577,-2.093994 11.5,6.83333 -0.92279,1.01507 -2.54419,1.51106 -3.83333,1.83334 C 223.43948,110.30679 220.61993,110 218,110 M 41,110 36.833332,147 30,159 24,143 27,110 h 14 m 46,0 3,33 -6,15 h -2 c -5.366936,-8.49765 -6.053299,-17.26251 -7,-27 -0.672195,-6.91406 -2,-14.04004 -2,-21 h 14 m 106,0 v 12 h 9 v -12 h -9 m -75,42 -5,13 H 91 L 96.333336,151.5 104,151.66666 Z"
+       id="path1" />
+  </g>
+</svg>
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://sixiyida.github.io/" selected>English</option>
+                                
+                                    <option value="https://sixiyida.github.io/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#0-前言">0. 前言</a></li>
+        <li><a href="#1-引入消息队列中间件">1. 引入消息队列中间件</a>
+          <ol>
+            <li><a href="#11-为什么引入消息队列中间件">1.1 为什么引入消息队列中间件？</a></li>
+            <li><a href="#12-引入哪一种">1.2 引入哪一种？</a></li>
+            <li><a href="#13-引入rocketmq">1.3 引入RocketMQ</a></li>
+            <li><a href="#14-架构更新">1.4 架构更新</a></li>
+            <li><a href="#15-rocketmq分布式事务逻辑">1.5 RocketMQ分布式事务逻辑</a></li>
+            <li><a href="#16-代码实现">1.6 代码实现</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/backend-development/" >
+                Backend Development
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/">点评项目优化</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            optimization for comment project
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 01, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="0-前言">0. 前言
+</h3><p>花了5天时间是跟着做完了黑马点评项目。虽说是烂大街项目之一，但我还是学到了不少东西。这个项目让我第一次看到了后端的全貌。这篇文章会记录我优化这个项目的过程，涉及中间件、功能拓展、LLM的引入等。</p>
+<h3 id="1-引入消息队列中间件">1. 引入消息队列中间件
+</h3><p>在项目的秒杀业务中，优惠券下单和数据持久化至数据库利用Redis Stream实现的消息队列解耦，优势主要在：</p>
+<ol>
+<li>简化下单流程，提高系统响应速度。</li>
+<li>提高并发量和鲁棒性，防止数据库击穿。</li>
+</ol>
+<h4 id="11-为什么引入消息队列中间件">1.1 为什么引入消息队列中间件？
+</h4><p><strong>持久化</strong>：Redis Stream依赖AOF/RDB持久化，主从切换时异步复制可能导致数据丢失；消息队列中间件，如RocketMQ，同步刷盘+多副本（RAFT协议），提供金融级可靠性。</p>
+<p><strong>消息积压</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><strong>能力</strong></th>
+          <th style="text-align: center">Redis Stream</th>
+          <th style="text-align: center">专业消息队列</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>存储介质</strong></td>
+          <td style="text-align: center">内存（成本高）</td>
+          <td style="text-align: center">磁盘（成本低）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>积压容忍度</strong></td>
+          <td style="text-align: center">需设置<code>MAXLEN</code>截断旧消息</td>
+          <td style="text-align: center">支持TB级堆积（如Kafka）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>内存风险</strong></td>
+          <td style="text-align: center">可能触发OOM（需手动扩内存）</td>
+          <td style="text-align: center">磁盘空间自动扩容无压力</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>运维与生态</strong>：专业消息队列工具链更完善。</p>
+<p><strong>高级功能</strong>：消息队列中间件引入了延迟队列、死信路由等企业级特性。</p>
+<h4 id="12-引入哪一种">1.2 引入哪一种？
+</h4><p>三种中间件对比：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><strong>能力维度</strong></th>
+          <th style="text-align: center"><strong>RabbitMQ</strong></th>
+          <th style="text-align: center"><strong>Kafka</strong></th>
+          <th style="text-align: center"><strong>RocketMQ</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>吞吐量</strong></td>
+          <td style="text-align: center">万级 TPS</td>
+          <td style="text-align: center">百万级 TPS</td>
+          <td style="text-align: center">十万级 TPS</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>延迟</strong></td>
+          <td style="text-align: center">微秒级</td>
+          <td style="text-align: center">毫秒级（批处理设计）</td>
+          <td style="text-align: center">毫秒级</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>事务支持</strong></td>
+          <td style="text-align: center">轻量级事务（同步阻塞）</td>
+          <td style="text-align: center">支持（≥0.11 版本）</td>
+          <td style="text-align: center">分布式事务消息</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>顺序性保障</strong></td>
+          <td style="text-align: center">单队列有序</td>
+          <td style="text-align: center">分区内有序</td>
+          <td style="text-align: center">队列/分区严格有序</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>可靠性机制</strong></td>
+          <td style="text-align: center">镜像队列+持久化</td>
+          <td style="text-align: center">多副本+ISR</td>
+          <td style="text-align: center">同步刷盘+多副本+RAFT 协议</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>秒杀核心优势</strong></td>
+          <td style="text-align: center">削峰填谷、异步解耦</td>
+          <td style="text-align: center">超高吞吐、日志流处理</td>
+          <td style="text-align: center">高并发+强一致性+低延迟</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>结论</strong>：选择RocketMQ，秒杀场景在需要高吞吐量的同时，需要强一致性和可靠性。同时RocketMQ支撑阿里多次双十一活动，非常无敌，必须喽他。</p>
+<h4 id="13-引入rocketmq">1.3 引入RocketMQ
+</h4><h5 id="131-部署rocketmq">1.3.1 部署RocketMQ
+</h5><p>由于本人太穷，服务器只有2核2G，但又不想妥协用轻量级的MQ，为验证项目逻辑，在本地Windows环境部署RocketMQ。</p>
+<p>下载跳过。</p>
+<p><strong>配置环境变量</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%ROCKETMQ_HOME% = ...\rocketmq-all-5.3.3-bin-release
+</span></span><span class="line"><span class="cl">%NAMESRV_ADDR% = localhost:9876
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>启动NameServer和Broker</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="k">%</span><span class="n">ROCKETMQ_HOME</span><span class="p">%</span>
+</span></span><span class="line"><span class="cl"><span class="n">bin</span><span class="p">/</span><span class="n">mqnamesrv</span>
+</span></span><span class="line"><span class="cl"><span class="n">bin</span><span class="p">/</span><span class="n">mqbroker</span> <span class="n">-n</span> <span class="n">localhost</span><span class="err">:</span><span class="mf">9876</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>测试生产消费：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">bin</span><span class="p">/</span><span class="n">tools</span> <span class="n">org</span><span class="p">.</span><span class="py">apache</span><span class="p">.</span><span class="py">rocketmq</span><span class="p">.</span><span class="py">example</span><span class="p">.</span><span class="py">quickstart</span><span class="p">.</span><span class="py">Producer</span>
+</span></span><span class="line"><span class="cl"><span class="n">bin</span><span class="p">/</span><span class="n">tools</span> <span class="n">org</span><span class="p">.</span><span class="py">apache</span><span class="p">.</span><span class="py">rocketmq</span><span class="p">.</span><span class="py">example</span><span class="p">.</span><span class="py">quickstart</span><span class="p">.</span><span class="py">Consumer</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="132-引入java客户端依赖">1.3.2 引入Java客户端依赖
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.apache.rocketmq<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>rocketmq-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>2.3.3<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="133-修改applicationsyml">1.3.3 修改applications.yml
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">rocketmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name-server</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:9876</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">producer</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l">${spring.application.name}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">send-message-timeout</span><span class="p">:</span><span class="w"> </span><span class="m">3000</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="14-架构更新">1.4 架构更新
+</h4><p><strong>目前架构</strong>：</p>
+<p>主线程：Lua(Redis校验下单资格 -&gt; 创建订单至Redis) -&gt; 向异步线程阻塞队列提交订单</p>
+<p>子线程：异步线程获取分布式锁 -&gt; 持久化至数据库(Transactional) -&gt; 解锁</p>
+<p>其中分布式锁的设计是原本在多台Tomcat下，会导致重复下单问题。但现在Redis由于是串行化的，无论多少台Tomcat都不会出现并发问题，且MQ也将创建订单的消息串行化了，故分布式锁可以取消。</p>
+<p><strong>更新后架构：</strong></p>
+<p>主线程：Lua(Redis校验下单资格 -&gt; 创建订单至Redis) -&gt; 向MQ生产订单消息</p>
+<p>子线程：消费MQ消息 -&gt; 持久化至数据库(Transactional)</p>
+<p>需要注意的是，在秒杀场景下，用户不应该为DB的错误买单，而且分布式事务违背了异步下单提高性能的初衷。故如果DB更新失败，不应该回滚Redis，而是应该重试DB更新操作。</p>
+<h4 id="15-rocketmq分布式事务逻辑">1.5 RocketMQ分布式事务逻辑
+</h4><p><img src="/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/e232d50763264.png"
+	width="2264"
+	height="1304"
+	srcset="/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/e232d50763264_hu_93bfda0262a28266.png 480w, /p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/e232d50763264_hu_fafa2e5bd20c19af.png 1024w"
+	loading="lazy"
+	
+		alt="e232d50763264"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="416px"
+	
+></p>
+<h4 id="16-代码实现">1.6 代码实现
+</h4><h5 id="161-mq配置类">1.6.1 MQ配置类
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Configuration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RocketMQConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&#34;${rocketmq.name-server}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nameServer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 事务消息生产者</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="p">(</span><span class="n">initMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;start&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">destroyMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;shutdown&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TransactionMQProducer</span><span class="w"> </span><span class="nf">transactionProducer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">TransactionMQProducer</span><span class="w"> </span><span class="n">producer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TransactionMQProducer</span><span class="p">(</span><span class="s">&#34;voucher_order_group&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">producer</span><span class="p">.</span><span class="na">setNamesrvAddr</span><span class="p">(</span><span class="n">nameServer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">producer</span><span class="p">.</span><span class="na">setTransactionListener</span><span class="p">(</span><span class="n">transactionListener</span><span class="p">());</span><span class="w"> </span><span class="c1">// 绑定事务监听器</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">producer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 事务监听器实现</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Bean</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TransactionListener</span><span class="w"> </span><span class="nf">transactionListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VoucherOrderTransactionListener</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>简单，跳过。</p>
+<h5 id="162-订单事务监听器">1.6.2 订单事务监听器
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Component</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VoucherOrderTransactionListener</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">TransactionListener</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Lazy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Resource</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">VoucherOrderServiceImpl</span><span class="w"> </span><span class="n">voucherOrderService</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 执行本地事务（订单创建）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">LocalTransactionState</span><span class="w"> </span><span class="nf">executeLocalTransaction</span><span class="p">(</span><span class="n">Message</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">arg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">VoucherOrder</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JSON</span><span class="p">.</span><span class="na">parseObject</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="na">getBody</span><span class="p">(),</span><span class="w"> </span><span class="n">VoucherOrder</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">voucherOrderService</span><span class="p">.</span><span class="na">createVoucherOrder</span><span class="p">(</span><span class="n">order</span><span class="p">);</span><span class="w"> </span><span class="c1">// 调用订单创建方法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">LocalTransactionState</span><span class="p">.</span><span class="na">COMMIT_MESSAGE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">voucherOrderService</span><span class="p">.</span><span class="na">rollbackRedis</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="na">getVoucherId</span><span class="p">(),</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="na">getUserId</span><span class="p">());</span><span class="w"> </span><span class="c1">// 非数据库操作导致的回滚</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">LocalTransactionState</span><span class="p">.</span><span class="na">ROLLBACK_MESSAGE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 事务回查（防止本地事务未提交）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">LocalTransactionState</span><span class="w"> </span><span class="nf">checkLocalTransaction</span><span class="p">(</span><span class="n">MessageExt</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">orderId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="na">getKeys</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">VoucherOrder</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">voucherOrderService</span><span class="p">.</span><span class="na">getById</span><span class="p">(</span><span class="n">orderId</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">LocalTransactionState</span><span class="p">.</span><span class="na">COMMIT_MESSAGE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">LocalTransactionState</span><span class="p">.</span><span class="na">ROLLBACK_MESSAGE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里几个关键点：</p>
+<p><code>@Lazy</code>：由于Service中注入了<code>transactionProducer</code>，而其依赖配置类中创建的<code>TransactionListener</code>，故产生循环依赖，需要使用懒加载打破循环依赖。</p>
+<p>回滚：如注释。</p>
+<h5 id="163-修改秒杀下单逻辑">1.6.3 修改秒杀下单逻辑
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Resource</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">private</span><span class="w"> </span><span class="n">TransactionMQProducer</span><span class="w"> </span><span class="n">transactionProducer</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">seckillVoucher</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">voucherId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserHolder</span><span class="p">.</span><span class="na">getUser</span><span class="p">().</span><span class="na">getId</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">SECKILL_SCRIPT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Collections</span><span class="p">.</span><span class="na">emptyList</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">voucherId</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&#34;库存不足&#34;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#34;不能重复下单&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 保存order</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VoucherOrder</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VoucherOrder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">redisIdWorker</span><span class="p">.</span><span class="na">nextId</span><span class="p">(</span><span class="s">&#34;order&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="na">setUserId</span><span class="p">(</span><span class="n">UserHolder</span><span class="p">.</span><span class="na">getUser</span><span class="p">().</span><span class="na">getId</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="na">setVoucherId</span><span class="p">(</span><span class="n">voucherId</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 构造消息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Message</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Message</span><span class="p">(</span><span class="s">&#34;voucher_order_topic&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">JSON</span><span class="p">.</span><span class="na">toJSONBytes</span><span class="p">(</span><span class="n">order</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="na">setKeys</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="na">getId</span><span class="p">().</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">transactionProducer</span><span class="p">.</span><span class="na">sendMessageInTransaction</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">MQClientException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&#34;MQ错误&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Transactional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createVoucherOrder</span><span class="p">(</span><span class="n">VoucherOrder</span><span class="w"> </span><span class="n">voucherOrder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">voucherOrder</span><span class="p">.</span><span class="na">getUserId</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">voucherId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">voucherOrder</span><span class="p">.</span><span class="na">getVoucherId</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seckillVoucherService</span><span class="p">.</span><span class="na">update</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">setSql</span><span class="p">(</span><span class="s">&#34;stock = stock - 1&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">eq</span><span class="p">(</span><span class="s">&#34;voucher_id&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">voucherId</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">gt</span><span class="p">(</span><span class="s">&#34;stock&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w">   </span><span class="c1">// CAS乐观锁</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">update</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 数据库操作失败</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. 删除购买记录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RedisConstants</span><span class="p">.</span><span class="na">SECKILL_ORDER_KEY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">voucherId</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. 恢复预扣库存</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">.</span><span class="na">increment</span><span class="p">(</span><span class="n">RedisConstants</span><span class="p">.</span><span class="na">SECKILL_STOCK_KEY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">voucherId</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&#34;数据库扣减失败&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">save</span><span class="p">(</span><span class="n">voucherOrder</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//幂等Redis回滚</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">rollbackRedis</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">voucherId</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">luaScript</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;local orderKey = KEYS[1] &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;local stockKey = KEYS[2] &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;local userId = ARGV[1] &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="c1">// 只回滚存在的订单记录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;if redis.call(&#39;sismember&#39;, orderKey, userId) == 1 then &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;   redis.call(&#39;srem&#39;, orderKey, userId) &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;   redis.call(&#39;incr&#39;, stockKey) &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">// 库存+1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;   return 1 &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;else &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;   return 0 &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">// 已处理或无记录</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;end&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">orderKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RedisConstants</span><span class="p">.</span><span class="na">SECKILL_ORDER_KEY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">voucherId</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">stockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RedisConstants</span><span class="p">.</span><span class="na">SECKILL_STOCK_KEY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">voucherId</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 执行Lua脚本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultRedisScript</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">luaScript</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="p">.</span><span class="na">class</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">orderKey</span><span class="p">,</span><span class="w"> </span><span class="n">stockKey</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">debug</span><span class="p">(</span><span class="s">&#34;回滚结果: {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/redis/">Redis</a>
+        
+            <a href="/tags/backend-development/">Backend Development</a>
+        
+            <a href="/tags/message-queue/">Message Queue</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/message-queue/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Message Queue</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Redis分布式锁</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/spring-ai-alibaba-graph-core-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">spring-ai-alibaba-graph-core 源码阅读</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/spring-ai-alibaba%E7%BB%B4%E6%8A%A4%E8%AE%B0%E5%BD%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">spring-ai-alibaba维护记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">系统设计</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 sixiyida
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

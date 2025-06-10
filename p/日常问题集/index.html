@@ -315,6 +315,14 @@
             <li><a href="#非静态成员变量初始化">非静态成员变量初始化</a></li>
             <li><a href="#springboot中的classpath">SpringBoot中的classpath</a></li>
             <li><a href="#aop的内部调用问题">AOP的内部调用问题</a></li>
+            <li><a href="#restful-apiput">RESTful API：PUT</a></li>
+            <li><a href="#resource和autowired对比">@Resource和@Autowired对比</a></li>
+            <li><a href="#o-instanceof-node-node的用法java-16">o instanceof Node node的用法（Java 16+）</a></li>
+            <li><a href="#recordjava-16">record（Java 16+）</a></li>
+            <li><a href="#this-调用其他构造函数">this() 调用其他构造函数</a></li>
+            <li><a href="#pecs原则">PECS原则</a></li>
+            <li><a href="#自定义collector">自定义Collector</a></li>
+            <li><a href="#optional对象">Optional对象</a></li>
           </ol>
         </li>
       </ol>
@@ -391,7 +399,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -459,7 +467,225 @@
 <li>直接使用<code>@Autowired</code>将自身注入。</li>
 </ol>
 <p>**缺陷：**循环依赖风险，三级缓存性能低。</p>
-
+<h4 id="restful-apiput">RESTful API：PUT
+</h4><p><strong>更新或创建指定位置的资源</strong>。客户端需提供完整的资源数据，服务器会<strong>完全替换</strong>目标 URI 对应的资源。若资源不存在，则新建资源。</p>
+<p>与POST对比：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><strong>特性</strong></th>
+          <th style="text-align: center"><strong>PUT</strong></th>
+          <th style="text-align: center"><strong>POST</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>幂等性</strong></td>
+          <td style="text-align: center">✅ 是（多次请求结果一致）</td>
+          <td style="text-align: center">❌ 否（可能产生多个资源）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>URI 含义</strong></td>
+          <td style="text-align: center">资源唯一标识（如 <code>/users/123</code>）</td>
+          <td style="text-align: center">资源集合（如 <code>/users</code>）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>数据完整性</strong></td>
+          <td style="text-align: center">必须提供完整资源</td>
+          <td style="text-align: center">可提交部分数据</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>典型响应码</strong></td>
+          <td style="text-align: center"><code>200 OK</code>（更新）或 <code>201 Created</code>（新建）</td>
+          <td style="text-align: center"><code>201 Created</code>（新建资源）</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="resource和autowired对比">@Resource和@Autowired对比
+</h4><ol>
+<li>
+<p><strong>@Resource流程</strong></p>
+<p>指定name → 按名称查找 → 失败抛异常</p>
+<p>未指定name → 先按字段名匹配 → 失败则按类型匹配</p>
+<p>指定type → 按类型唯一匹配 → 多匹配抛异常</p>
+</li>
+<li>
+<p><strong>@Autowired 流程</strong></p>
+<p>按类型查找 → 找到唯一 Bean → 注入成功</p>
+<p>找到多个同类型 Bean → 需结合 <code>@Qualifier(&quot;beanName&quot;)</code> 指定名称</p>
+<p>无匹配且→ 注入required=false → 注入 null</p>
+</li>
+</ol>
+<h4 id="o-instanceof-node-node的用法java-16">o instanceof Node node的用法（Java 16+）
+</h4><p><strong>等于以下代码：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">o</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="p">)</span><span class="w"> </span><span class="n">o</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="recordjava-16">record（Java 16+）
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">public record Person(String name, int age) {}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>自动生成内容：</p>
+<ul>
+<li>全参构造器（如<code>Person(String name, int age)</code>）</li>
+<li>字段访问器（如<code>name()</code>、<code>age()</code>，而非传统<code>getName()</code>）</li>
+<li><code>equals()</code>、<code>hashCode()</code>、<code>toString()</code>方法</li>
+</ul>
+<p>所有字段默认为<code>final</code>，实例化后不可修改</p>
+<h4 id="this-调用其他构造函数">this() 调用其他构造函数
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">Edge</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">sourceId</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">EdgeValue</span><span class="o">&gt;</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 构造函数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Edge</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">sourceId</span><span class="p">,</span><span class="w"> </span><span class="n">EdgeValue</span><span class="w"> </span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">(</span><span class="n">sourceId</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">target</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="pecs原则">PECS原则
+</h4><p>Producer Extends, Consumer Super.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;?</span><span class="w"> </span><span class="n">extend</span><span class="w"> </span><span class="n">K</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">produce</span><span class="p">()</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>原因：PE可以保证获取的至少是一个K，这样获取出来的可以直接用K来接，是类型安全的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="nf">consume</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>原因：CS可以保证接收消费对象的容器装的是其父类对象，可以保证传入的对象可以被向上转型，是类型安全的。</p>
+<h4 id="自定义collector">自定义Collector
+</h4><p>Collector接口定义了5个核心方法，需全部实现：</p>
+<ol>
+<li>
+<p><strong><code>supplier()</code></strong>
+创建结果容器（如<code>ArrayList::new</code>），用于存储中间结果</p>
+</li>
+<li>
+<p><strong><code>accumulator()</code></strong>
+定义如何将元素添加到容器（如<code>List::add</code>），处理单个元素的累加逻辑</p>
+</li>
+<li>
+<p><strong><code>combiner()</code></strong>
+合并并行流的子结果（如合并两个List：<code>list1.addAll(list2)</code>），需保证线程安全</p>
+</li>
+<li>
+<p><strong><code>finisher()</code></strong>
+将中间容器转换为最终结果（如<code>StringBuilder::toString</code>），可进行最终转换或过滤</p>
+</li>
+<li>
+<p><strong><code>characteristics()</code></strong>
+返回收集器特性的<code>Set</code>，影响性能优化：</p>
+<p><code>CONCURRENT</code>：支持多线程并发操作容器（需线程安全）</p>
+<p><code>UNORDERED</code>：结果与元素顺序无关（如Set）</p>
+<p><code>IDENTITY_FINISH</code>：跳过<code>finisher()</code>，直接返回中间容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">toMapRemovingNulls</span><span class="p">(</span><span class="n">Function</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">K</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keyMapper</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">Function</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="w"> </span><span class="n">valueMapper</span><span class="p">,</span><span class="w"> </span><span class="n">BinaryOperator</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mergeFunction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="n">Collector</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">HashMap</span><span class="p">::</span><span class="k">new</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keyMapper</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">element</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">U</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valueMapper</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">element</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="n">map</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="n">map</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">mergeFunction</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">},</span><span class="w"> </span><span class="p">(</span><span class="n">map1</span><span class="p">,</span><span class="w"> </span><span class="n">map2</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">map2</span><span class="p">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">					</span><span class="n">map1</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">mergeFunction</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="n">map1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">},</span><span class="w"> </span><span class="n">Collector</span><span class="p">.</span><span class="na">Characteristics</span><span class="p">.</span><span class="na">UNORDERED</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="optional对象">Optional对象
+</h4><p>将可能为 <code>null</code> 的对象包装在 <code>Optional</code> 容器中，强制开发者显式处理空值场景。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">getName</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>提供 <code>map()</code>, <code>flatMap()</code>, <code>filter()</code> 等方法，支持以函数式风格处理值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 链式获取嵌套属性（避免多层判空）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">province</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">User</span><span class="p">::</span><span class="n">getAddress</span><span class="p">)</span><span class="w">     </span><span class="c1">// 若user非空，提取地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Address</span><span class="p">::</span><span class="n">getProvince</span><span class="p">)</span><span class="w"> </span><span class="c1">// 若地址非空，提取省份</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="s">&#34;未知地区&#34;</span><span class="p">);</span><span class="w">        </span><span class="c1">// 若为空，返回默认值</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -503,64 +729,64 @@
             
                 
 <article class="">
+    <a href="/p/spring-ai-alibaba-graph-core-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">spring-ai-alibaba-graph-core 源码阅读</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/spring-ai-alibaba%E7%BB%B4%E6%8A%A4%E8%AE%B0%E5%BD%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">spring-ai-alibaba维护记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">系统设计</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">点评项目优化</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/spring%E7%9B%B8%E5%85%B3/">
         
         
 
         <div class="article-details">
             <h2 class="article-title">Spring相关</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/message-queue/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Message Queue</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/mysql/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">MySQL</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Redis分布式锁</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/algorithms/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Algorithms</h2>
         </div>
     </a>
 </article>

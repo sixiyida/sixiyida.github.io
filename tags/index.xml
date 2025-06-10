@@ -7,12 +7,76 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>sixiyida</copyright>
-        <lastBuildDate>Fri, 30 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 06 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Agent Development</title>
+        <link>https://sixiyida.github.io/tags/agent-development/</link>
+        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/agent-development/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Backend Development</title>
         <link>https://sixiyida.github.io/tags/backend-development/</link>
-        <pubDate>Fri, 30 May 2025 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
         
         <guid>https://sixiyida.github.io/tags/backend-development/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>LLM</title>
+        <link>https://sixiyida.github.io/tags/llm/</link>
+        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/llm/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Source Code Comprehension</title>
+        <link>https://sixiyida.github.io/tags/source-code-comprehension/</link>
+        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/source-code-comprehension/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Spring AI Alibaba</title>
+        <link>https://sixiyida.github.io/tags/spring-ai-alibaba/</link>
+        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/spring-ai-alibaba/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Workflow</title>
+        <link>https://sixiyida.github.io/tags/workflow/</link>
+        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/workflow/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>System Design</title>
+        <link>https://sixiyida.github.io/tags/system-design/</link>
+        <pubDate>Mon, 02 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/system-design/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Message Queue</title>
+        <link>https://sixiyida.github.io/tags/message-queue/</link>
+        <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/message-queue/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Redis</title>
+        <link>https://sixiyida.github.io/tags/redis/</link>
+        <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/redis/</guid>
         <description></description>
         </item>
         <item>
@@ -64,27 +128,11 @@
         <description></description>
         </item>
         <item>
-        <title>Message Queue</title>
-        <link>https://sixiyida.github.io/tags/message-queue/</link>
-        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://sixiyida.github.io/tags/message-queue/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>MySQL</title>
         <link>https://sixiyida.github.io/tags/mysql/</link>
         <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://sixiyida.github.io/tags/mysql/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Redis</title>
-        <link>https://sixiyida.github.io/tags/redis/</link>
-        <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://sixiyida.github.io/tags/redis/</guid>
         <description></description>
         </item>
         <item>

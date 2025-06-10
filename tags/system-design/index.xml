@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>System Design on sixiyida</title>
+        <link>https://sixiyida.github.io/tags/system-design/</link>
+        <description>Recent content in System Design on sixiyida</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>sixiyida</copyright>
+        <lastBuildDate>Mon, 02 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/tags/system-design/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>系统设计</title>
+        <link>https://sixiyida.github.io/p/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</link>
+        <pubDate>Mon, 02 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/p/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</guid>
+        <description>&lt;h3 id=&#34;分库分表和分页&#34;&gt;分库分表和分页
+&lt;/h3&gt;&lt;h4 id=&#34;1-分表table-sharding&#34;&gt;&lt;strong&gt;1. 分表&lt;/strong&gt;（Table Sharding）
+&lt;/h4&gt;&lt;p&gt;定义：将单张数据表按特定规则（如哈希、范围）拆分为多个结构相同的小表，存储在同一数据库或不同数据库中&lt;/p&gt;
+&lt;p&gt;目的：解决单表数据量过大导致的查询性能下降（如索引膨胀、磁盘I/O瓶颈）&lt;/p&gt;
+&lt;p&gt;适用场景：单表数据超千万级，但数据库实例资源未达瓶颈&lt;/p&gt;
+&lt;h4 id=&#34;2-分库database-sharding&#34;&gt;2. 分库（Database Sharding）
+&lt;/h4&gt;&lt;p&gt;定义：将整个数据库按业务或数据维度拆分为多个独立的数据库实例，每个实例存储部分数据&lt;/p&gt;
+&lt;p&gt;目的：解决单库连接数不足、磁盘空间不足、写并发压力大等问题&lt;/p&gt;
+&lt;p&gt;适用场景：单库QPS过高、连接数耗尽或需故障隔离&lt;/p&gt;
+&lt;h4 id=&#34;3-分片sharding&#34;&gt;&lt;strong&gt;3. 分片（Sharding）&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;定义：分库+分表的组合策略，将数据按规则（如哈希、范围）分布到多个数据库节点（分片），每个节点包含部分库和表。&lt;/p&gt;
+&lt;p&gt;目的：实现真正的水平扩展，支持海量数据与高并发&lt;/p&gt;
+&lt;p&gt;适用场景：超大规模数据（TB/PB级）、需全局负载均衡&lt;/p&gt;
+&lt;h4 id=&#34;核心区别总结&#34;&gt;&lt;strong&gt;核心区别总结&lt;/strong&gt;
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;维度&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;分表&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;分库&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;分片&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;拆分对象&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;单张表&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;整个数据库实例&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;库+表组合的分布式节点&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;主要目标&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;解决单表性能瓶颈&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;解决单库资源瓶颈&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;全局水平扩展与高可用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;数据分布&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;表内数据拆分&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;库间数据隔离&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;跨节点数据分片&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;典型场景&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;大表查询优化&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;高并发写入/连接数不足&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;超大规模系统（如社交平台）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
