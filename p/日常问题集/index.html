@@ -307,26 +307,19 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
-      <ol>
-        <li>
-          <ol>
-            <li><a href="#静态代码块初始化">静态代码块初始化</a></li>
-            <li><a href="#非静态成员变量初始化">非静态成员变量初始化</a></li>
-            <li><a href="#springboot中的classpath">SpringBoot中的classpath</a></li>
-            <li><a href="#aop的内部调用问题">AOP的内部调用问题</a></li>
-            <li><a href="#restful-apiput">RESTful API：PUT</a></li>
-            <li><a href="#resource和autowired对比">@Resource和@Autowired对比</a></li>
-            <li><a href="#o-instanceof-node-node的用法java-16">o instanceof Node node的用法（Java 16+）</a></li>
-            <li><a href="#recordjava-16">record（Java 16+）</a></li>
-            <li><a href="#this-调用其他构造函数">this() 调用其他构造函数</a></li>
-            <li><a href="#pecs原则">PECS原则</a></li>
-            <li><a href="#自定义collector">自定义Collector</a></li>
-            <li><a href="#optional对象">Optional对象</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
+    <li><a href="#静态代码块初始化">静态代码块初始化</a></li>
+    <li><a href="#非静态成员变量初始化">非静态成员变量初始化</a></li>
+    <li><a href="#springboot中的classpath">SpringBoot中的classpath</a></li>
+    <li><a href="#aop的内部调用问题">AOP的内部调用问题</a></li>
+    <li><a href="#restful-apiput">RESTful API：PUT</a></li>
+    <li><a href="#resource和autowired对比">@Resource和@Autowired对比</a></li>
+    <li><a href="#o-instanceof-node-node的用法java-16">o instanceof Node node的用法（Java 16+）</a></li>
+    <li><a href="#recordjava-16">record（Java 16+）</a></li>
+    <li><a href="#this-调用其他构造函数">this() 调用其他构造函数</a></li>
+    <li><a href="#pecs原则">PECS原则</a></li>
+    <li><a href="#自定义collector">自定义Collector</a></li>
+    <li><a href="#optional对象">Optional对象</a></li>
+    <li><a href="#深拷贝的三种方法">深拷贝的三种方法</a></li>
   </ol>
 </nav>
         </div>
@@ -414,8 +407,8 @@
     <section class="article-content">
     
     
-    <h4 id="静态代码块初始化">静态代码块初始化
-</h4><div class="highlight"><div class="chroma">
+    <h2 id="静态代码块初始化">静态代码块初始化
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -442,10 +435,10 @@
 <p>可以进行复杂逻辑初始化</p>
 </li>
 </ul>
-<h4 id="非静态成员变量初始化">非静态成员变量初始化
-</h4><p>在对象创建时完成，顺序为<strong>声明赋值 → 初始化块 → 构造函数</strong>，每种与代码书写顺序一致。</p>
-<h4 id="springboot中的classpath">SpringBoot中的classpath
-</h4><p>一句话总结：<strong>classpath 等价于 main/java + main/resources + 第三方jar包的根目录</strong>。</p>
+<h2 id="非静态成员变量初始化">非静态成员变量初始化
+</h2><p>在对象创建时完成，顺序为<strong>声明赋值 → 初始化块 → 构造函数</strong>，每种与代码书写顺序一致。</p>
+<h2 id="springboot中的classpath">SpringBoot中的classpath
+</h2><p>一句话总结：<strong>classpath 等价于 main/java + main/resources + 第三方jar包的根目录</strong>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -455,8 +448,8 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>ClassPathResource对应main/resources目录下文件。</p>
-<h4 id="aop的内部调用问题">AOP的内部调用问题
-</h4><p>在使用AOP的场景中，如@Transactional，如果使用this指针调用内部方法，会绕过代理导致AOP失效。</p>
+<h2 id="aop的内部调用问题">AOP的内部调用问题
+</h2><p>在使用AOP的场景中，如@Transactional，如果使用this指针调用内部方法，会绕过代理导致AOP失效。</p>
 <p><strong>解决方法：</strong></p>
 <ol>
 <li>使用<code>AopContext.currentProxy()</code>直接获取当前代理对象，原理是通过 ThreadLocal 存储当前线程的代理对象。</li>
@@ -467,8 +460,8 @@
 <li>直接使用<code>@Autowired</code>将自身注入。</li>
 </ol>
 <p>**缺陷：**循环依赖风险，三级缓存性能低。</p>
-<h4 id="restful-apiput">RESTful API：PUT
-</h4><p><strong>更新或创建指定位置的资源</strong>。客户端需提供完整的资源数据，服务器会<strong>完全替换</strong>目标 URI 对应的资源。若资源不存在，则新建资源。</p>
+<h2 id="restful-apiput">RESTful API：PUT
+</h2><p><strong>更新或创建指定位置的资源</strong>。客户端需提供完整的资源数据，服务器会<strong>完全替换</strong>目标 URI 对应的资源。若资源不存在，则新建资源。</p>
 <p>与POST对比：</p>
 <div class="table-wrapper"><table>
   <thead>
@@ -501,8 +494,8 @@
       </tr>
   </tbody>
 </table></div>
-<h4 id="resource和autowired对比">@Resource和@Autowired对比
-</h4><ol>
+<h2 id="resource和autowired对比">@Resource和@Autowired对比
+</h2><ol>
 <li>
 <p><strong>@Resource流程</strong></p>
 <p>指定name → 按名称查找 → 失败抛异常</p>
@@ -516,8 +509,8 @@
 <p>无匹配且→ 注入required=false → 注入 null</p>
 </li>
 </ol>
-<h4 id="o-instanceof-node-node的用法java-16">o instanceof Node node的用法（Java 16+）
-</h4><p><strong>等于以下代码：</strong></p>
+<h2 id="o-instanceof-node-node的用法java-16">o instanceof Node node的用法（Java 16+）
+</h2><p><strong>等于以下代码：</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -530,8 +523,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="recordjava-16">record（Java 16+）
-</h4><div class="highlight"><div class="chroma">
+</div><h2 id="recordjava-16">record（Java 16+）
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -546,8 +539,8 @@
 <li><code>equals()</code>、<code>hashCode()</code>、<code>toString()</code>方法</li>
 </ul>
 <p>所有字段默认为<code>final</code>，实例化后不可修改</p>
-<h4 id="this-调用其他构造函数">this() 调用其他构造函数
-</h4><div class="highlight"><div class="chroma">
+<h2 id="this-调用其他构造函数">this() 调用其他构造函数
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -565,8 +558,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="pecs原则">PECS原则
-</h4><p>Producer Extends, Consumer Super.</p>
+</div><h2 id="pecs原则">PECS原则
+</h2><p>Producer Extends, Consumer Super.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -585,8 +578,8 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>原因：CS可以保证接收消费对象的容器装的是其父类对象，可以保证传入的对象可以被向上转型，是类型安全的。</p>
-<h4 id="自定义collector">自定义Collector
-</h4><p>Collector接口定义了5个核心方法，需全部实现：</p>
+<h2 id="自定义collector">自定义Collector
+</h2><p>Collector接口定义了5个核心方法，需全部实现：</p>
 <ol>
 <li>
 <p><strong><code>supplier()</code></strong>
@@ -658,8 +651,8 @@
 </div>
 </div></li>
 </ol>
-<h4 id="optional对象">Optional对象
-</h4><p>将可能为 <code>null</code> 的对象包装在 <code>Optional</code> 容器中，强制开发者显式处理空值场景。</p>
+<h2 id="optional对象">Optional对象
+</h2><p>将可能为 <code>null</code> 的对象包装在 <code>Optional</code> 容器中，强制开发者显式处理空值场景。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -685,7 +678,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="s">&#34;未知地区&#34;</span><span class="p">);</span><span class="w">        </span><span class="c1">// 若为空，返回默认值</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><h2 id="深拷贝的三种方法">深拷贝的三种方法
+</h2><ol>
+<li>实现clone接口，要求引用属性全部实现clonable接口，递归调用。</li>
+<li>直接序列化然后反序列化，要求引用属性全部实现serializable接口。</li>
+<li>手动递归复制。</li>
+</ol>
+
 </section>
 
 
@@ -729,6 +728,32 @@
             
                 
 <article class="">
+    <a href="/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">八股文之Java集合</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">八股文之Java基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/spring-ai-alibaba-graph-core-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
         
         
@@ -761,32 +786,6 @@
 
         <div class="article-details">
             <h2 class="article-title">系统设计</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">点评项目优化</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/spring%E7%9B%B8%E5%85%B3/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Spring相关</h2>
         </div>
     </a>
 </article>

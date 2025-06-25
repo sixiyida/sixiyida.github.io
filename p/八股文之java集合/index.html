@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="sixiyida's notes">
-<title>Category: Backend Development - Pager 2 - sixiyida</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Java Collection basic knowledge">
+<title>八股文之Java集合</title>
 
-<link rel='canonical' href='https://sixiyida.github.io/categories/backend-development/'>
+<link rel='canonical' href='https://sixiyida.github.io/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/'>
 
-<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Category: Backend Development - sixiyida">
-<meta property='og:description' content="sixiyida's notes">
-<meta property='og:url' content='https://sixiyida.github.io/categories/backend-development/'>
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="八股文之Java集合">
+<meta property='og:description' content="Java Collection basic knowledge">
+<meta property='og:url' content='https://sixiyida.github.io/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/'>
 <meta property='og:site_name' content='sixiyida'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-06-24T00:00:00&#43;00:00 '/>
-<meta name="twitter:title" content="Category: Backend Development - sixiyida">
-<meta name="twitter:description" content="sixiyida's notes"><link rel="alternate" type="application/rss&#43;xml" href="https://sixiyida.github.io/categories/backend-development/index.xml">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Java' /><meta property='article:published_time' content='2025-06-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-24T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="八股文之Java集合">
+<meta name="twitter:description" content="Java Collection basic knowledge">
     </head>
-    <body class="">
+    <body class="
+    article-page
+    ">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
@@ -286,61 +288,10 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/search/" class="search-form widget" >
-        <p>
-            <label>Search</label>
-            <input name="keyword" required placeholder="Type something..." />
-        
-            <button title="Search">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-            </button>
-        </p>
-    </form>
-            
-        
-            
-                <section class="widget archives">
+                
+    <section class="widget archives">
         <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Archives</h2>
-
-        
-        
-        
-        
-        
-        <div class="widget-archive--list">
-            <div class="archives-year">
-                    <a href="/archives/#2025">
-                        
-                            <span class="year">2025</span>
-                            <span class="count">12</span>
-                        
-                    </a> 
-                </div>
-            
-        </div>
-    </section>
-            
-        
-            
-                <section class="widget tagCloud">
-    <div class="widget-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <line x1="5" y1="9" x2="19" y2="9" />
   <line x1="5" y1="15" x2="19" y2="15" />
@@ -350,180 +301,303 @@
 
 
 
-    </div>
-    <h2 class="widget-title section-title">Categories</h2>
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#list">List</a>
+      <ol>
+        <li><a href="#遍历时修改">遍历时修改</a></li>
+        <li><a href="#arraylist多线程访问下可能出现的问题">ArrayList多线程访问下可能出现的问题</a></li>
+        <li></li>
+        <li><a href="#扩容操作">扩容操作</a></li>
+        <li><a href="#coaw的线程安全">COAW的线程安全</a></li>
+      </ol>
+    </li>
+    <li><a href="#map">MAP</a>
+      <ol>
+        <li><a href="#遍历方法">遍历方法</a></li>
+        <li><a href="#hashmap竞争问题">HashMap竞争问题</a>
+          <ol>
+            <li><a href="#jdk17之前">JDK1.7之前</a></li>
+            <li><a href="#jdk18之后">JDK1.8之后</a></li>
+          </ol>
+        </li>
+        <li><a href="#put流程">Put流程</a></li>
+        <li><a href="#hashmap用string做key的原因">HashMap用String做Key的原因</a></li>
+        <li><a href="#对重写hashcode和equals的限制">对重写hashCode()和equals()的限制</a></li>
+        <li><a href="#hashmap扩容是两倍的原因">HashMap扩容是两倍的原因</a></li>
+        <li><a href="#concurrenthashmap原理">ConcurrentHashMap原理</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
 
-    <div class="tagCloud-tags">
-        
-            <a href="/categories/backend-development/" class="font_size_9">
-                Backend Development
-            </a>
-        
-            <a href="/categories/distributed-system/" class="font_size_3">
-                Distributed System
-            </a>
-        
-            <a href="/categories/programing/" class="font_size_3">
-                Programing
-            </a>
-        
-            <a href="/categories/agent-development/" class="font_size_2">
-                Agent Development
-            </a>
-        
-            <a href="/categories/algorithm/" class="font_size_1">
-                Algorithm
-            </a>
-        
-            <a href="/categories/java/" class="font_size_1">
-                Java
-            </a>
-        
-            <a href="/categories/leetcode/" class="font_size_1">
-                LeetCode
-            </a>
-        
-            <a href="/categories/system-design/" class="font_size_1">
-                System Design
-            </a>
-        
-    </div>
-</section>
-
-            
-        
-            
-                <section class="widget tagCloud">
-    <div class="widget-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
-  <circle cx="9" cy="9" r="2" />
-</svg>
-
-
-
-    </div>
-    <h2 class="widget-title section-title">Tags</h2>
-
-    <div class="tagCloud-tags">
-        
-            <a href="/tags/backend-development/" class="font_size_8">
-                Backend Development
-            </a>
-        
-            <a href="/tags/java/" class="font_size_4">
-                Java
-            </a>
-        
-            <a href="/tags/agent-development/" class="font_size_2">
-                Agent Development
-            </a>
-        
-            <a href="/tags/c&#43;&#43;/" class="font_size_2">
-                C&#43;&#43;
-            </a>
-        
-            <a href="/tags/distributed-system/" class="font_size_2">
-                Distributed System
-            </a>
-        
-            <a href="/tags/llm/" class="font_size_2">
-                LLM
-            </a>
-        
-            <a href="/tags/message-queue/" class="font_size_2">
-                Message Queue
-            </a>
-        
-            <a href="/tags/redis/" class="font_size_2">
-                Redis
-            </a>
-        
-            <a href="/tags/spring-ai-alibaba/" class="font_size_2">
-                Spring AI Alibaba
-            </a>
-        
-            <a href="/tags/algorithm/" class="font_size_1">
-                Algorithm
-            </a>
-        
-    </div>
-</section>
             
         
     </aside>
 
 
             <main class="main full-width">
-    <header>
-        <h3 class="section-title">
-            
-                Categories
-            
-        </h3>
+    <article class="main-article">
+    <header class="article-header">
 
-        <div class="section-card">
-            <div class="section-details">
-                <h3 class="section-count">9 pages</h3>
-                <h1 class="section-term">Backend Development</h1>
-                
-            </div>
-        </div>
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/programing/" >
+                Programing
+            </a>
+        
     </header>
     
-    <section class="article-list--compact">
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/">八股文之Java集合</a>
+        </h2>
+    
         
-            <article>
-    <a href="/p/mysql/">
-        <div class="article-details">
-            <h2 class="article-title">MySQL</h2>
-            <footer class="article-time">
-                <time datetime='2025-05-28T00:00:00Z'>May 28, 2025</time>
-            </footer>
-        </div>
-    </a>
-</article>
+        <h3 class="article-subtitle">
+            Java Collection basic knowledge
+        </h3>
         
-            <article>
-    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-        <div class="article-details">
-            <h2 class="article-title">Redis分布式锁</h2>
-            <footer class="article-time">
-                <time datetime='2025-05-28T00:00:00Z'>May 28, 2025</time>
-            </footer>
-        </div>
-    </a>
-</article>
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
         
-            <article>
-    <a href="/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/">
-        <div class="article-details">
-            <h2 class="article-title">日常问题集</h2>
-            <footer class="article-time">
-                <time datetime='2025-05-28T00:00:00Z'>May 28, 2025</time>
-            </footer>
-        </div>
-    </a>
-</article>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 24, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><img src="/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/1717481094793-b8ffe6ae-2ee6-4de5-b61b-8468e32bf269.webp"
+	width="877"
+	height="450"
+	srcset="/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/1717481094793-b8ffe6ae-2ee6-4de5-b61b-8468e32bf269_hu_9caab6718d4364b6.webp 480w, /p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E9%9B%86%E5%90%88/1717481094793-b8ffe6ae-2ee6-4de5-b61b-8468e32bf269_hu_1a134bbbf5d8dc05.webp 1024w"
+	loading="lazy"
+	
+		alt="1717481094793-b8ffe6ae-2ee6-4de5-b61b-8468e32bf269"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="467px"
+	
+></p>
+<h2 id="list">List
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>ArrayList</th>
+          <th>LinkedList</th>
+          <th>Vector</th>
+          <th>CopyOnWriteArrayList</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>类似C++的Vector，略</td>
+          <td>类似C++的List，略</td>
+          <td>同步ArrayList</td>
+          <td>写时复制，读无锁，提升并发性能</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="遍历时修改">遍历时修改
+</h3><p>用foreach不能修改，容易出现问题。</p>
+<p>用迭代器/for遍历，可以修改，迭代器修改要使用迭代器的set方法。</p>
+<p>对COWA，可以修改，因为在副本上修改。</p>
+<h3 id="arraylist多线程访问下可能出现的问题">ArrayList多线程访问下可能出现的问题
+</h3><p>以多线程add元素为例。</p>
+<ol>
+<li>竞争扩容导致部分值设置为null。</li>
+<li>竞争导致不扩容，导致越界访问。</li>
+<li>覆盖同一位置的值。</li>
+</ol>
+<h3 id="">
+</h3><h3 id="扩容操作">扩容操作
+</h3><p>类似C++中Vector，只是在Java中扩容倍数是1.5倍，而Vector是两倍。</p>
+<h3 id="coaw的线程安全">COAW的线程安全
+</h3><p>读时无锁，写时获取互斥锁并复制。</p>
+<h2 id="map">MAP
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>HashMap</th>
+          <th>LinkedHashMap</th>
+          <th>TreeMap</th>
+          <th>HashTable</th>
+          <th>ConcurrentHashMap</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>unordered_map + 红黑树链地址法</td>
+          <td>双向链表维护底层，迭代顺序和插入顺序一致。</td>
+          <td>map</td>
+          <td>加大锁的HashMap</td>
+          <td>元素级锁的HashMap</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="遍历方法">遍历方法
+</h3><ol>
+<li>For-each+entrySet/keySet</li>
+<li>迭代器</li>
+<li>foreach方法</li>
+<li>StreamAPI</li>
+<li></li>
+</ol>
+<h3 id="hashmap竞争问题">HashMap竞争问题
+</h3><h4 id="jdk17之前">JDK1.7之前
+</h4><ol>
+<li>
+<p>Entry散链死循环问题：</p>
+<p>由于头插法（在链表头部插入），当线程T1、T2同时扩容时，可能会出现以下情况：</p>
+<p>T2扩容后反转链表为B-&gt;A，但是T1仍然操纵旧链表的头节点A，且认为A的next是B，导致AB之间相互指向。</p>
+</li>
+<li>
+<p>数据丢失问题：</p>
+<p>类似于List的扩容null问题。</p>
+</li>
+</ol>
+<h4 id="jdk18之后">JDK1.8之后
+</h4><ol>
+<li>散链改成了红黑树结构，只存在数据覆盖问题。</li>
+<li></li>
+</ol>
+<h3 id="put流程">Put流程
+</h3><p>前面hash-&gt;CAS跳过，后续是：检查散链大小（8）-&gt;转红黑树？-&gt;检查负载因子-&gt;扩容两倍？</p>
+<p>注意：key可以为null，当为null时候令hashCode为0</p>
+<h3 id="hashmap用string做key的原因">HashMap用String做Key的原因
+</h3><p>String不可变，保证Key稳定性。</p>
+<h3 id="对重写hashcode和equals的限制">对重写hashCode()和equals()的限制
+</h3><p>equals是hashCode相等的充分不必要条件。</p>
+<h3 id="hashmap扩容是两倍的原因">HashMap扩容是两倍的原因
+</h3><p>新hash值=旧哈希值+新hash值最高位代表数值（0或者是旧容量）。</p>
+<h3 id="concurrenthashmap原理">ConcurrentHashMap原理
+</h3><p>1.8以后：当容器为空/散链为空，用CAS初始化；当不为空，对散链头节点加互斥锁，锁粒度减小，并发量上升。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">Java</a>
         
     </section>
-    <nav class='pagination'>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E5%9F%BA%E7%A1%80/">
         
         
 
-        
-            
-                    <a class='page-link' href='/categories/backend-development/'>1</a>
-                
-            
-            
-                <span class='page-link current'>2</span>
-                
-            
-    </nav>
+        <div class="article-details">
+            <h2 class="article-title">八股文之Java基础</h2>
+        </div>
+    </a>
+</article>
 
-<footer class="site-footer">
+            
+                
+<article class="">
+    <a href="/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">日常问题集</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
     <section class="copyright">
         &copy; 
         
@@ -536,6 +610,84 @@
     </section>
 </footer>
 
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
 
             </main>
         </div>
