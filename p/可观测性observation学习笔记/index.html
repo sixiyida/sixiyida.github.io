@@ -476,16 +476,6 @@ Micrometer 是 ​<strong>​Java 应用的指标埋点门面库​</strong>​�
 <h3 id="opentelemetryotel"><strong>OpenTelemetry（OTel）</strong>
 </h3><p>OTel是<strong>跨语言的可观测数据采集框架</strong>，统一处理 Metrics、Traces、Logs 的生成、转换和导出。</p>
 <p><strong>与Micrometer的关系</strong>：OTel SDK可以包装Micrometer注册的 <code>MeterRegistry</code> ，将数据通过OTLP协议导出。</p>
-<p><img src="C:%5cUsers%5c23977%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250625232335224.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20250625232335224"
-	
-	
-></p>
 <p><strong>Traces场景下</strong>：</p>
 <p>OTel是<strong>Trace 数据的主要采集器</strong>，可将Trace数据发给SkyWalking、Jaeger等。</p>
 <h3 id="prometheus">Prometheus
@@ -551,14 +541,14 @@ Micrometer 将指标暴露为 Prometheus 格式 → Prometheus 定时拉取并�
 <h3 id="micrometer最佳实践">Micrometer最佳实践
 </h3><p>Micrometer Observation API的官方推荐架构模式：</p>
 <p>📋 Documentation (文档定义)
-↓ 定义标准
-🎛️ Convention (约定实现)
-↓ 处理规则
-📦 Context (上下文数据)
-↓ 数据载体
-🔧 Handler (处理器执行)
-↓ 实际处理
-📊 Metrics &amp; Logs (输出结果)</p>
+↓ 定义标准</p>
+<p>🎛️ Convention (约定实现)
+↓ 处理规则</p>
+<p>📦 Context (上下文数据)
+↓ 数据载体</p>
+<p>🔧 Handler (处理器执行)
+↓ 实际处理</p>
+<p>📊 Metrics &amp; Logs (输出结果)</p>
 <h4 id="context">Context
 </h4><p>是实际观测数据的载体，存储需要观测的所有信息。以GraphObservation实现为例：</p>
 <div class="highlight"><div class="chroma">
