@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Note for Observation">
+<title>可观测性Observation学习笔记</title>
+
+<link rel='canonical' href='https://sixiyida.github.io/p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="可观测性Observation学习笔记">
+<meta property='og:description' content="Note for Observation">
+<meta property='og:url' content='https://sixiyida.github.io/p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='sixiyida'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Backend Development' /><meta property='article:tag' content='Distributed System' /><meta property='article:tag' content='Observation' /><meta property='article:published_time' content='2025-06-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-25T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="可观测性Observation学习笔记">
+<meta name="twitter:description" content="Note for Observation">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_599050889a64db87.png" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😀</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">sixiyida</a></h1>
+            <h2 class="site-description">sixiyida&#39;s notes</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/sixiyida'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.xiaohongshu.com/user/profile/6329e87e000000002303d3d3'
+                        target="_blank"
+                        title="RedBook"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   sodipodi:docname="XiaohongshuLOGO.png"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.6914062"
+     inkscape:cx="127.81422"
+     inkscape:cy="128"
+     inkscape:window-width="1600"
+     inkscape:window-height="928"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <path
+       style="fill:#ff2842;stroke:none"
+       d="M 29,0.33332825 C 13.959937,3.4666748 1.5356731,15.204498 0,31 -1.586103,47.314209 0,64.597672 0,81 v 102 c 0,18.76035 -4.7369685,44.19888 7.3333335,60 C 20.372129,260.06897 44.156731,256 63,256 h 111 35 c 5.78276,0 12.33244,0.84741 18,-0.33333 15.0401,-3.13336 27.46432,-14.87115 29,-30.66667 1.58612,-16.31419 0,-33.59769 0,-50 V 73 C 256,54.239685 260.73697,28.801102 248.66667,13 235.62787,-4.0689697 211.84329,0 193,0 H 82 47 C 41.217228,0 34.667561,-0.84741211 29,0.33332825 M 120,91 l -7,19 h 12 l -10,24 9,1 c -0.98794,2.68155 -2.31718,7.73317 -4.33334,9.83334 C 118.18945,146.3721 115.92654,146 114,146 c -4.35942,0 -13.16798,1.80539 -15.5,-3 -1.069664,-2.20416 0.465553,-4.98451 1.333336,-7 1.813624,-4.21228 4.222554,-8.51549 5.166664,-13 -2.17548,0 -4.92464,0.42967 -7,-0.33333 -7.778526,-2.85974 0.874031,-15.36435 2.66666,-19.66667 1.25875,-3.020981 2.75652,-9.584732 5.5,-11.5 C 110.01874,88.810822 115.88325,90.674988 120,91 m -79,63 c 2.750713,0 6.837379,0.81721 8.5,-2 1.769028,-2.99753 0.5,-9.58963 0.5,-13 V 106 C 50,102.90659 48.438198,93.464493 51.166668,91.5 53.41069,89.884308 62.832935,90.226166 63.833332,93 65.47065,97.539825 64,105.16241 64,110 v 32 c 0,5.48389 0.949112,11.8645 -1.333332,17 -2.177158,4.89861 -12.303417,9.27243 -17.333336,5.5 C 43.120155,162.84012 41.545292,156.59013 41,154 M 193,91 v 5 c 3.72887,0 8.4108,-0.763367 12,0.333328 11.97635,3.659424 11,15.422502 11,25.666672 1.99706,0 4.04419,-0.15562 6,0.33333 11.49335,2.87334 10,14.36401 10,23.66667 0,4.95615 0.93086,10.82184 -2.33333,15 -3.59567,4.60246 -9.48195,4 -14.66667,4 -1.6116,0 -4.26318,0.51051 -5.66667,-0.5 -2.62326,-1.88875 -3.78159,-7.50485 -4.33333,-10.5 3.28711,0 9.2179,1.12517 11.83333,-1.33334 C 219.9164,149.76859 218.65411,138.43454 215,136.5 c -1.93661,-1.02527 -4.88672,-0.5 -7,-0.5 h -15 v 29 h -14 v -29 h -14 v -14 h 14 v -12 h -9 V 96 h 9 v -5 h 14 m -32,5 v 14 h -8 v 42 h 13 v 13 H 120 L 125.33334,152.5 138,152 v -42 h -8 V 96 h 31 m 57,14 c 0,-2.84204 -0.51608,-6.25871 0.33333,-9 3.34434,-10.793121 19.61577,-2.093994 11.5,6.83333 -0.92279,1.01507 -2.54419,1.51106 -3.83333,1.83334 C 223.43948,110.30679 220.61993,110 218,110 M 41,110 36.833332,147 30,159 24,143 27,110 h 14 m 46,0 3,33 -6,15 h -2 c -5.366936,-8.49765 -6.053299,-17.26251 -7,-27 -0.672195,-6.91406 -2,-14.04004 -2,-21 h 14 m 106,0 v 12 h 9 v -12 h -9 m -75,42 -5,13 H 91 L 96.333336,151.5 104,151.66666 Z"
+       id="path1" />
+  </g>
+</svg>
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://sixiyida.github.io/" selected>English</option>
+                                
+                                    <option value="https://sixiyida.github.io/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#可观测性的三大支柱">可观测性的三大支柱</a>
+      <ol>
+        <li><a href="#日志log">日志Log</a></li>
+        <li><a href="#指标metrics">指标Metrics</a></li>
+        <li><a href="#追踪traces">追踪Traces</a>
+          <ol>
+            <li><a href="#核心概念span跨度"><strong>核心概念：Span（跨度）</strong></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#工具解释">工具解释</a>
+      <ol>
+        <li><a href="#micrometer">Micrometer</a></li>
+        <li><a href="#opentelemetryotel"><strong>OpenTelemetry（OTel）</strong></a></li>
+        <li><a href="#prometheus">Prometheus</a></li>
+        <li><a href="#skywalking">SkyWalking</a></li>
+        <li><a href="#otlp协议">OTLP协议</a></li>
+        <li><a href="#阿里云arms">阿里云ARMS</a></li>
+      </ol>
+    </li>
+    <li><a href="#micrometer和otel集成">Micrometer和OTel集成</a>
+      <ol>
+        <li><a href="#micrometer最佳实践">Micrometer最佳实践</a>
+          <ol>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#convention">Convention</a></li>
+            <li><a href="#handler">Handler</a></li>
+            <li><a href="#组件协作流程">组件协作流程</a></li>
+            <li><a href="#observationreg的作用">ObservationReg的作用</a></li>
+            <li><a href="#meterreg的作用">MeterReg的作用</a></li>
+          </ol>
+        </li>
+        <li><a href="#trace相关">Trace相关</a></li>
+        <li><a href="#基本概念的区分">基本概念的区分</a>
+          <ol>
+            <li><a href="#tag和metrics的关系">Tag和Metrics的关系</a></li>
+            <li><a href="#tag的基数">Tag的基数</a></li>
+            <li><a href="#span和metrics的关系">Span和Metrics的关系</a></li>
+            <li><a href="#trace和span的关系">Trace和Span的关系</a></li>
+            <li><a href="#span的上传时机">Span的上传时机</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#spring-ai通过otel与langfuse集成">Spring AI通过OTel与Langfuse集成</a>
+      <ol>
+        <li><a href="#引入依赖">引入依赖</a></li>
+        <li><a href="#配置langfuse">配置LangFuse</a></li>
+        <li><a href="#配置applicationyml">配置application.yml</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/backend-development/" >
+                Backend Development
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">可观测性Observation学习笔记</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Note for Observation
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 25, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="可观测性的三大支柱">可观测性的三大支柱
+</h2><h3 id="日志log">日志Log
+</h3><p>用于回溯和调试，略。</p>
+<h3 id="指标metrics">指标Metrics
+</h3><p>Metrics 是系统运行状态的量化数据，通常是随时间变化的数值。比如：</p>
+<ul>
+<li>每秒处理的请求数（QPS）</li>
+<li>请求平均耗时（RT）</li>
+<li>服务器CPU使用率</li>
+<li>错误请求的比例</li>
+</ul>
+<h3 id="追踪traces">追踪Traces
+</h3><p>Traces 用于记录<strong>一个请求在分布式系统中的完整执行路径</strong>。想象用户一次点击，可能经过网关→订单服务→库存服务→支付服务→数据库。Traces 能完整还原这个链条中每一步发生了什么、花了多久。</p>
+<h4 id="核心概念span跨度"><strong>核心概念：Span（跨度）</strong>
+</h4><p>每个服务处理请求的过程被记录为一个 <strong>Span</strong>，包含：</p>
+<ul>
+<li><strong>操作名</strong>（如<code>createOrder</code>）</li>
+<li><strong>开始/结束时间戳</strong></li>
+<li><strong>关键属性</strong>（HTTP状态码、DB查询语句）</li>
+<li><strong>父子关系</strong>（哪个服务调用了哪个服务）</li>
+<li><strong>Trace ID</strong>：贯穿全链路的唯一标识，用于串联所有Span</li>
+</ul>
+<h2 id="工具解释">工具解释
+</h2><h3 id="micrometer">Micrometer
+</h3><p><strong>核心作用</strong>：
+Micrometer 是 ​<strong>​Java 应用的指标埋点门面库​</strong>​，提供统一 API（如计数器、计时器），让开发者无需关心后端监控系统（Prometheus、Datadog 等）。</p>
+<p><strong>数据流向：</strong>
+应用代码埋点 → Micrometer 生成指标数据 → 直接输出给 Prometheus。</p>
+<p><strong>示例场景</strong>：
+在 Spring Boot 中配置 Micrometer 的 Prometheus 导出器，指标会通过 <code>/actuator/prometheus</code> 端点暴露，供 Prometheus 拉取。</p>
+<h3 id="opentelemetryotel"><strong>OpenTelemetry（OTel）</strong>
+</h3><p>OTel是<strong>跨语言的可观测数据采集框架</strong>，统一处理 Metrics、Traces、Logs 的生成、转换和导出。</p>
+<p><strong>与Micrometer的关系</strong>：OTel SDK可以包装Micrometer注册的 <code>MeterRegistry</code> ，将数据通过OTLP协议导出。</p>
+<p><img src="C:%5cUsers%5c23977%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20250625232335224.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250625232335224"
+	
+	
+></p>
+<p><strong>Traces场景下</strong>：</p>
+<p>OTel是<strong>Trace 数据的主要采集器</strong>，可将Trace数据发给SkyWalking、Jaeger等。</p>
+<h3 id="prometheus">Prometheus
+</h3><p><strong>核心作用</strong>：
+专注 ​<strong>​指标（Metrics）的存储、查询和告警​</strong>​，不处理 Trace 数据。</p>
+<p><strong>与 Micrometer 协作</strong>：
+Micrometer 将指标暴露为 Prometheus 格式 → Prometheus 定时拉取并存储 → Grafana 可视化</p>
+<h3 id="skywalking">SkyWalking
+</h3><p>定位：开源APM (Application Performance Management) 系统，专注于<strong>全链路追踪（Tracing）</strong> 和拓扑分析。</p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li>**调用链追踪：**记录请求跨服务的完整路径，可视化每个环节耗时与状态（Span 数据）。</li>
+<li><strong>服务拓扑</strong>：自动绘制服务依赖关系图，快速定位瓶颈节点。</li>
+<li><strong>指标集成</strong>：支持基础资源（JVM/线程池）和链路指标（慢请求比例）。</li>
+</ul>
+<h3 id="otlp协议">OTLP协议
+</h3><p>OTLP（OpenTelemetry Protocol）是<strong>OpenTelemetry项目定义的标准数据传输协议</strong>，用于在分布式系统中高效、可靠地传输遥测数据（包括追踪信息、指标和日志）。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><strong>传输方式</strong></th>
+          <th style="text-align: center"><strong>协议</strong></th>
+          <th style="text-align: center"><strong>默认端口</strong></th>
+          <th style="text-align: center"><strong>适用场景</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>OTLP/gRPC</strong></td>
+          <td style="text-align: center">gRPC + Protobuf</td>
+          <td style="text-align: center">4317</td>
+          <td style="text-align: center">高性能内部通信（如应用→收集器）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>OTLP/HTTP</strong></td>
+          <td style="text-align: center">HTTP/1.1或HTTP/2 + Protobuf/JSON</td>
+          <td style="text-align: center">4318</td>
+          <td style="text-align: center">穿透防火墙或兼容HTTP的环境</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>数据路径：</p>
+<p>应用 →（OTLP/gRPC）→ OpenTelemetry Collector →（转换格式）→ Prometheus/Jaeger。</p>
+<h3 id="阿里云arms">阿里云ARMS
+</h3><p><strong>定位</strong>：<strong>企业级全栈监控产品</strong>，整合日志、指标、追踪能力。</p>
+<p>兼容 OpenTelemetry、SkyWalking 等开源协议。</p>
+<p><img src="/p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c8b34eb88d4fd.png"
+	width="3223"
+	height="427"
+	srcset="/p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c8b34eb88d4fd_hu_ef415e5bd1b7cc13.png 480w, /p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/c8b34eb88d4fd_hu_cef4a5c43c9b77df.png 1024w"
+	loading="lazy"
+	
+		alt="c8b34eb88d4fd"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="754"
+		data-flex-basis="1811px"
+	
+></p>
+<h2 id="micrometer和otel集成">Micrometer和OTel集成
+</h2><p>Springboot对于Micrometer和OTel的集成做的较好，我们主要关注Micrometer的采集即可。</p>
+<h3 id="micrometer最佳实践">Micrometer最佳实践
+</h3><p>Micrometer Observation API的官方推荐架构模式：</p>
+<p>📋 Documentation (文档定义)
+↓ 定义标准
+🎛️ Convention (约定实现)
+↓ 处理规则
+📦 Context (上下文数据)
+↓ 数据载体
+🔧 Handler (处理器执行)
+↓ 实际处理
+📊 Metrics &amp; Logs (输出结果)</p>
+<h4 id="context">Context
+</h4><p>是实际观测数据的载体，存储需要观测的所有信息。以GraphObservation实现为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GraphNodeObservationContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Observation</span><span class="p">.</span><span class="na">Context</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nodeName</span><span class="p">;</span><span class="w">    </span><span class="c1">// 节点名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">event</span><span class="p">;</span><span class="w">       </span><span class="c1">// 事件类型 (onStart/before/after/onError/onComplete)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w">   </span><span class="c1">// 节点状态</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">output</span><span class="p">;</span><span class="w">  </span><span class="c1">// 节点输出</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 构造函数 + Getter方法 + Builder模式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Builder</span><span class="w"> </span><span class="nf">builder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Builder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="documentation">Documentation
+</h4><p>是制定的观测标准，约定观测的标签、指标名称等，同时分类高低基数标签。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">GraphNodeObservationDocumentation</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ObservationDocumentation</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">GRAPH_NODE</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ObservationConvention</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Context</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">getDefaultConvention</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">GraphNodeObservationConvention</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">  </span><span class="c1">// 👈 指定约定类</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">KeyName</span><span class="o">[]</span><span class="w"> </span><span class="nf">getLowCardinalityKeyNames</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">LowCardinalityKeyNames</span><span class="p">.</span><span class="na">values</span><span class="p">();</span><span class="w">  </span><span class="c1">// 👈 低基数标签</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">KeyName</span><span class="o">[]</span><span class="w"> </span><span class="nf">getHighCardinalityKeyNames</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">HighCardinalityKeyNames</span><span class="p">.</span><span class="na">values</span><span class="p">();</span><span class="w"> </span><span class="c1">// 👈 高基数标签</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 低基数标签定义 (适合聚合查询)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">LowCardinalityKeyNames</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">KeyName</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SPRING_AI_ALIBABA_KIND</span><span class="p">,</span><span class="w">  </span><span class="c1">// spring.ai.alibaba.kind</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GRAPH_NODE_NAME</span><span class="p">,</span><span class="w">         </span><span class="c1">// spring.ai.alibaba.graph.node.name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GRAPH_EVENT</span><span class="w">              </span><span class="c1">// spring.ai.alibaba.graph.event</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 高基数标签定义 (详细信息)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">HighCardinalityKeyNames</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">KeyName</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GRAPH_NODE_STATE</span><span class="p">,</span><span class="w">        </span><span class="c1">// spring.ai.alibaba.graph.node.state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GRAPH_NODE_OUTPUT</span><span class="w">        </span><span class="c1">// spring.ai.alibaba.graph.node.output</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="convention">Convention
+</h4><p>处理Documentation，分离高低基数标签，将Context数据转换为观测标签。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DefaultGraphNodeObservationConvention</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">GraphNodeObservationConvention</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;spring.ai.alibaba.graph.node&#34;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 👈 观测名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getContextualName</span><span class="p">(</span><span class="n">GraphNodeObservationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">hasText</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="na">getName</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;%s %s&#34;</span><span class="p">.</span><span class="na">formatted</span><span class="p">(</span><span class="n">DEFAULT_OPERATION_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DEFAULT_OPERATION_NAME</span><span class="p">;</span><span class="w">  </span><span class="c1">// 👈 上下文名称生成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">KeyValues</span><span class="w"> </span><span class="nf">getLowCardinalityKeyValues</span><span class="p">(</span><span class="n">GraphNodeObservationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">KeyValues</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">KeyValue</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;spring.ai.alibaba.kind&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;graph_node&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">KeyValue</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;spring.ai.alibaba.graph.node.name&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getNodeName</span><span class="p">()),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">KeyValue</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;spring.ai.alibaba.graph.event&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getEvent</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">  </span><span class="c1">// 👈 低基数标签生成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">KeyValues</span><span class="w"> </span><span class="nf">getHighCardinalityKeyValues</span><span class="p">(</span><span class="n">GraphNodeObservationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">KeyValues</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">KeyValue</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;spring.ai.alibaba.graph.node.state&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getState</span><span class="p">().</span><span class="na">toString</span><span class="p">()),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">KeyValue</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;spring.ai.alibaba.graph.node.output&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getOutput</span><span class="p">().</span><span class="na">toString</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">  </span><span class="c1">// 👈 高基数标签生成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="handler">Handler
+</h4><p>处理观测的事件，具体作用参见组件协作流程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GraphNodeObservationHandler</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ObservationHandler</span><span class="o">&lt;</span><span class="n">GraphNodeObservationContext</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MeterRegistry</span><span class="w"> </span><span class="n">meterRegistry</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onStop</span><span class="p">(</span><span class="n">GraphNodeObservationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. 记录成功日志</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&#34;Graph nodeName: {} event: {} state: {} output: {}&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">context</span><span class="p">.</span><span class="na">getNodeName</span><span class="p">(),</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getEvent</span><span class="p">(),</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">context</span><span class="p">.</span><span class="na">getState</span><span class="p">(),</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">getOutput</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. 生成成功指标</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GraphMetricsGenerator</span><span class="p">.</span><span class="na">generate</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">meterRegistry</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onError</span><span class="p">(</span><span class="n">GraphNodeObservationContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. 记录错误日志</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&#34;Graph nodeName: {} event: {} state: {} output: {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. 生成失败指标</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GraphMetricsGenerator</span><span class="p">.</span><span class="na">generate</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">meterRegistry</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">supportsContext</span><span class="p">(</span><span class="n">Observation</span><span class="p">.</span><span class="na">Context</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">GraphNodeObservationContext</span><span class="p">;</span><span class="w">  </span><span class="c1">// 👈 支持类型判断</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="组件协作流程">组件协作流程
+</h4><p>当创建一个观测时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 1. 创建观测时</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Observation</span><span class="p">.</span><span class="na">start</span><span class="p">(</span><span class="n">GraphObservationDocumentation</span><span class="p">.</span><span class="na">GRAPH</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GraphObservationContext</span><span class="p">(</span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">),</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="n">observationRegistry</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>会发生以下步骤：</p>
+<ol>
+<li>首先根据Observation传入的Convention将Context里面的数据转换成KeyValue对（其中Convention会从对应的Documentation里面去找高低基数键和名字）</li>
+<li>Convention的应用在Handler被调用之前，他会给Observation.Context基类中添加Convention标准化后的KeyValue，然后这个Context会被后续的Handler所使用</li>
+<li>然后被注册到ObservationReg里面的Handler，会使用MetricsGenerator去创建Metrics，同时Metrics会注册到meterReg里面</li>
+<li>MetircsGenerator会创建所需要的Tag，包括直接创建的和被KeyValue中的Key所转换的。</li>
+</ol>
+<h4 id="observationreg的作用">ObservationReg的作用
+</h4><p><strong>作用和职责：</strong></p>
+<ol>
+<li>Handler 管理：注册和管理 ObservationHandler</li>
+<li>Convention 管理：管理观测约定（如何转换Context为标签）</li>
+<li>Filter 管理：管理观测过滤器</li>
+<li>观测生命周期控制：协调观测的创建、启动、停止</li>
+</ol>
+<h4 id="meterreg的作用">MeterReg的作用
+</h4><p><strong>作用和职责：</strong></p>
+<ol>
+<li>指标管理中心：创建、注册和管理所有的指标对象（Counter、Timer、Gauge等）</li>
+<li>指标数据存储：在内存中维护指标的当前值</li>
+<li>指标数据发布：将收集的指标数据发布到各种监控系统</li>
+</ol>
+<h3 id="trace相关">Trace相关
+</h3><p>刚刚的最佳实践仅仅落脚在metrics，关于trace，并没有说明。</p>
+<p>在SpringBoot中，当有Micrometer Tracing桥接库时候，自动配置会生效，配置<code>TracingObservationHandler</code>以及相关组件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>io.micrometer<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>micrometer-tracing-bridge-otel<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>TracingObservationHandler</code> 会被自动注册到 <code>ObservationRegistry</code> 中，监听 <code>start</code>、<code>stop</code>、<code>error</code> 等事件，生成对应的 Span 数据。</p>
+<h3 id="基本概念的区分">基本概念的区分
+</h3><h4 id="tag和metrics的关系">Tag和Metrics的关系
+</h4><p>Tag是Metrics的组成部分，<strong>一个完整的Metric由name + tags + value组成</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 一个完整的Metric由 name + tags + value 组成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">&#34;api.requests&#34;</span><span class="p">)</span><span class="w">           </span><span class="c1">// ← Metric名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&#34;method&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;GET&#34;</span><span class="p">)</span><span class="w">                 </span><span class="c1">// ← Tag 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&#34;status&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;200&#34;</span><span class="p">)</span><span class="w">                 </span><span class="c1">// ← Tag 2  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&#34;endpoint&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/users&#34;</span><span class="p">)</span><span class="w">            </span><span class="c1">// ← Tag 3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">increment</span><span class="p">();</span><span class="w">                         </span><span class="c1">// ← 值的操作</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>同时，<strong>Tag可以为Metric提供聚合能力</strong>，比如可以筛选出Tag=特定值的Metric个数。</p>
+<p>聚合以后的Metrics，也可以叫做Metric，更精准的叫法是Calculated Metric。</p>
+<h4 id="tag的基数">Tag的基数
+</h4><p>高低基数是Tag的分类依据，基数是什么意思呢，就是说Tag的可能值。比如Tag的key是用户用时，那么可能的value就会非常多，就是高基数Tag。反之，Tag的key可能是RESTful API的method，那一共就那么几种，就是低基数Tag。</p>
+<h4 id="span和metrics的关系">Span和Metrics的关系
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Metric 示例：聚合统计</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Counter</span><span class="p">.</span><span class="na">builder</span><span class="p">(</span><span class="s">&#34;http.requests.total&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&#34;method&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;GET&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">tag</span><span class="p">(</span><span class="s">&#34;status&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;200&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">register</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">increment</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 结果：http_requests_total{method=&#34;GET&#34;,status=&#34;200&#34;} 1500</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Span 示例：单个请求详情</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Span</span><span class="w"> </span><span class="n">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tracer</span><span class="p">.</span><span class="na">spanBuilder</span><span class="p">(</span><span class="s">&#34;http-request&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&#34;http.method&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;GET&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&#34;http.url&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/api/users/12345&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&#34;http.status_code&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&#34;user.id&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;12345&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&#34;response.size&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">2048</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">startSpan</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>对比来看，Span是微观视图，Metric是宏观视图。</p>
+<h4 id="trace和span的关系">Trace和Span的关系
+</h4><p>Trace的基本单位是一个一个的span，多个span通过parent-child关系组成完整的Trace。</p>
+<p>每个span包含：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;traceId&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;c227f936a3eb510e7da12fda10a8ffab&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;spanId&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;884c2f1abf7f956b&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;parentSpanId&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;293e5b7de78ff24c&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;name&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;chat qwen-max&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;kind&#34;</span><span class="p">:</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;startTimeUnixNano&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;1733482368328941400&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;endTimeUnixNano&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;1733482372190192300&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;attributes&#34;</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="p">...</span><span class="o">]</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;events&#34;</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="p">...</span><span class="o">]</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s">&#34;status&#34;</span><span class="p">:</span><span class="w"> </span><span class="p">{...}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="span的上传时机">Span的上传时机
+</h4><p><strong>自动上传时机：</strong></p>
+<ol>
+<li>
+<p>Span完成时：当一个操作结束，对应的span会自动结束并触发上传</p>
+</li>
+<li>
+<p>缓冲区满时：当内存中积累的span数据达到一定大小（如1MB）时批量上传</p>
+</li>
+<li>
+<p>定时上传：OpenTelemetry SDK会定期flush未上传的span</p>
+</li>
+<li>
+<p>应用关闭时：通过shutdown()方法确保所有span都被上传</p>
+</li>
+</ol>
+<p><strong>手动上传时机：</strong></p>
+<ol>
+<li>
+<p>调用flush()：可以手动触发span上传</p>
+</li>
+<li>
+<p>应用重启前：确保数据不丢失</p>
+</li>
+</ol>
+<p><strong>span结束后的上传：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="n">CompletableResultCode</span><span class="w"> </span><span class="nf">export</span><span class="p">(</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">SpanData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spans</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">studioObservabilityProperties</span><span class="p">.</span><span class="na">isEnabled</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">CompletableResultCode</span><span class="p">.</span><span class="na">ofSuccess</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isShutdown</span><span class="p">.</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">CompletableResultCode</span><span class="p">.</span><span class="na">ofFailure</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 立即处理span数据</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ResourceSpansMarshaler</span><span class="o">[]</span><span class="w"> </span><span class="n">allResourceSpans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ResourceSpansMarshaler</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">spans</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">studioObservabilityService</span><span class="p">.</span><span class="na">export</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">allResourceSpans</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>到达阈值后批量上传：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedWriter</span><span class="w"> </span><span class="n">writer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newBufferedWriter</span><span class="p">(</span><span class="n">outputPath</span><span class="p">,</span><span class="w"> </span><span class="n">StandardOpenOption</span><span class="p">.</span><span class="na">APPEND</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ResourceSpansMarshaler</span><span class="w"> </span><span class="n">resourceSpans</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">allResourceSpans</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generateJson</span><span class="p">(</span><span class="n">resourceSpans</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">json</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">LINE_SEPARATOR</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 当缓存达到1MB时批量写入</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">1024</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">writer</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">setLength</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">sb</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">writer</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="spring-ai通过otel与langfuse集成">Spring AI通过OTel与Langfuse集成
+</h2><p>Spring AI实现了基于micrometer的埋点，可以轻松的使用OTLP协议导出，进而实现观测数据上传至Langfuse。</p>
+<h3 id="引入依赖">引入依赖
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>com.alibaba.cloud.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-alibaba-starter-dashscope<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-autoconfigure-model-chat-observation<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-autoconfigure-model-embedding-observation<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-autoconfigure-model-image-observation<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-autoconfigure-vector-store-observation<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>org.springframework.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-vector-store<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>com.alibaba.cloud.ai<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>spring-ai-alibaba-starter-tool-calling-weather<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>io.opentelemetry.instrumentation<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>opentelemetry-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;version&gt;</span>2.9.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>io.micrometer<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>micrometer-tracing-bridge-otel<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;exclusions&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;exclusion&gt;</span>
+</span></span><span class="line"><span class="cl">					<span class="nt">&lt;artifactId&gt;</span>slf4j-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">					<span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;/exclusion&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;/exclusions&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;groupId&gt;</span>io.opentelemetry<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;artifactId&gt;</span>opentelemetry-exporter-otlp<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/dependencies&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置langfuse">配置LangFuse
+</h3><p><strong>注册账号、获取API Key</strong>：</p>
+<p><a class="link" href="https://cloud.langfuse.com/"  target="_blank" rel="noopener"
+    >https://cloud.langfuse.com</a></p>
+<p><strong>Linux/MacOS：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> -n <span class="s2">&#34;public_key:secret_key&#34;</span> <span class="p">|</span> base64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Windows PowerShell：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">[</span><span class="no">System.Convert</span><span class="p">]::</span><span class="n">ToBase64String</span><span class="p">([</span><span class="no">System.Text.Encoding</span><span class="p">]::</span><span class="n">UTF8</span><span class="p">.</span><span class="py">GetBytes</span><span class="p">(</span><span class="s2">&#34;public_key:secret_key&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置applicationyml">配置application.yml
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">application</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">observability</span><span class="o">-</span><span class="n">models</span><span class="o">-</span><span class="n">dashscope</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nl">ai</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">dashscope</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">api</span><span class="o">-</span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">AI_DASHSCOPE_API_KEY</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">spring</span><span class="w"> </span><span class="n">ai</span><span class="w"> </span><span class="n">alibaba</span><span class="w"> </span><span class="n">weather</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="n">calling</span><span class="w"> </span><span class="n">config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">alibaba</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">toolcalling</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">weather</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">api</span><span class="o">-</span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">WEATHER_API_KEY</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">Chat</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">items</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">chat</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">client</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">observations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="kc">false</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">log</span><span class="o">-</span><span class="n">prompt</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">observations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log</span><span class="o">-</span><span class="n">prompt</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log</span><span class="o">-</span><span class="n">completion</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">include</span><span class="o">-</span><span class="n">error</span><span class="o">-</span><span class="n">logging</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">items</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">vectorstore</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">observations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log</span><span class="o">-</span><span class="n">query</span><span class="o">-</span><span class="n">response</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">tools</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">items</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tools</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">observations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="kc">false</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">include</span><span class="o">-</span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nl">image</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">observations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">log</span><span class="o">-</span><span class="n">prompt</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nl">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">client</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">read</span><span class="o">-</span><span class="n">timeout</span><span class="p">:</span><span class="w"> </span><span class="n">60s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">management</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">endpoints</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">exposure</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">include</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;*&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">endpoint</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">health</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">detailed</span><span class="w"> </span><span class="n">messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">show</span><span class="o">-</span><span class="n">details</span><span class="p">:</span><span class="w"> </span><span class="n">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">tracing</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sampling</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="n">trace</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="n">request</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">probability</span><span class="p">:</span><span class="w"> </span><span class="n">1</span><span class="p">.</span><span class="na">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">observations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nl">otel</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">spring</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">alibaba</span><span class="o">-</span><span class="n">graph</span><span class="o">-</span><span class="n">langfuse</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">resource</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">attributes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">deployment</span><span class="p">.</span><span class="na">environment</span><span class="p">:</span><span class="w"> </span><span class="n">development</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">configure</span><span class="w"> </span><span class="n">exporter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">traces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exporter</span><span class="p">:</span><span class="w"> </span><span class="n">otlp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sampler</span><span class="p">:</span><span class="w"> </span><span class="n">always_on</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">metrics</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exporter</span><span class="p">:</span><span class="w"> </span><span class="n">otlp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="n">exportation</span><span class="w"> </span><span class="n">inhibited</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">langfuse</span><span class="w"> </span><span class="n">currently</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">support</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">logs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exporter</span><span class="p">:</span><span class="w"> </span><span class="n">none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">exporter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">otlp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;https://cloud.langfuse.com/api/public/otel&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">headers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Authorization</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;Basic ${YOUR_BASE64_ENCODED_CREDENTIALS}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">protocol</span><span class="p">:</span><span class="w"> </span><span class="n">http</span><span class="o">/</span><span class="n">protobuf</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/backend-development/">Backend Development</a>
+        
+            <a href="/tags/distributed-system/">Distributed System</a>
+        
+            <a href="/tags/observation/">Observation</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/langsmith%E8%B0%83%E7%A0%94%E8%AE%B0%E5%BD%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LangSmith调研记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/message-queue/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Message Queue</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Redis分布式锁</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/spring-ai-alibaba-graph-core-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">spring-ai-alibaba-graph-core 源码阅读</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/spring-ai-alibaba%E7%BB%B4%E6%8A%A4%E8%AE%B0%E5%BD%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">spring-ai-alibaba维护记录</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 sixiyida
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

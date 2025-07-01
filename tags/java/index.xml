@@ -353,6 +353,23 @@
 </description>
         </item>
         <item>
+        <title>八股文之Java并发</title>
+        <link>https://sixiyida.github.io/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E5%B9%B6%E5%8F%91/</link>
+        <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E5%B9%B6%E5%8F%91/</guid>
+        <description>&lt;h2 id=&#34;多线程竞争下的问题&#34;&gt;多线程竞争下的问题
+&lt;/h2&gt;&lt;p&gt;原子性：互斥访问，原子操作atomic/串行访问synchronized限制。&lt;/p&gt;
+&lt;p&gt;可见性：直接操作主内存，使用synchronized和volatile实现。&lt;/p&gt;
+&lt;p&gt;volatile&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;读写直达主内存，绕过缓存。&lt;/li&gt;
+&lt;li&gt;写以后其他CPU变量的缓存自动失效强制重新加载&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;有序性：&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>日常问题集</title>
         <link>https://sixiyida.github.io/p/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E9%9B%86/</link>
         <pubDate>Wed, 28 May 2025 00:00:00 +0000</pubDate>

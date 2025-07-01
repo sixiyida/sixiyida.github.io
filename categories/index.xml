@@ -7,18 +7,10 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>sixiyida</copyright>
-        <lastBuildDate>Tue, 24 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Programing</title>
-        <link>https://sixiyida.github.io/categories/programing/</link>
-        <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://sixiyida.github.io/categories/programing/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Thu, 26 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Agent Development</title>
         <link>https://sixiyida.github.io/categories/agent-development/</link>
-        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
         <guid>https://sixiyida.github.io/categories/agent-development/</guid>
         <description></description>
@@ -26,7 +18,7 @@
         <item>
         <title>Backend Development</title>
         <link>https://sixiyida.github.io/categories/backend-development/</link>
-        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
         <guid>https://sixiyida.github.io/categories/backend-development/</guid>
         <description></description>
@@ -34,9 +26,17 @@
         <item>
         <title>Distributed System</title>
         <link>https://sixiyida.github.io/categories/distributed-system/</link>
-        <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
         <guid>https://sixiyida.github.io/categories/distributed-system/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Programing</title>
+        <link>https://sixiyida.github.io/categories/programing/</link>
+        <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/categories/programing/</guid>
         <description></description>
         </item>
         <item>
