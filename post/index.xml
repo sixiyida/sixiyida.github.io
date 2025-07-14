@@ -1475,14 +1475,252 @@ Micrometer 将指标暴露为 Prometheus 格式 → Prometheus 定时拉取并�
         
         <guid>https://sixiyida.github.io/p/%E5%85%AB%E8%82%A1%E6%96%87%E4%B9%8Bjava%E5%B9%B6%E5%8F%91/</guid>
         <description>&lt;h2 id=&#34;多线程竞争下的问题&#34;&gt;多线程竞争下的问题
-&lt;/h2&gt;&lt;p&gt;原子性：互斥访问，原子操作atomic/串行访问synchronized限制。&lt;/p&gt;
-&lt;p&gt;可见性：直接操作主内存，使用synchronized和volatile实现。&lt;/p&gt;
-&lt;p&gt;volatile&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;**原子性：**互斥访问，原子操作atomic/串行访问synchronized限制。&lt;/p&gt;
+&lt;p&gt;**可见性：**直接操作主内存，使用synchronized和volatile实现。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;volatile&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;读写直达主内存，绕过缓存。&lt;/li&gt;
-&lt;li&gt;写以后其他CPU变量的缓存自动失效强制重新加载&lt;/li&gt;
+&lt;li&gt;写以后其他CPU变量的缓存自动失效强制重新加载。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;有序性：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;有序性：&lt;/strong&gt; 指令重排序导致的线程观测其他线程指令执行顺序不一致。&lt;/p&gt;
+&lt;h2 id=&#34;线程的创建方式&#34;&gt;线程的创建方式
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;继承Thread类，重写run()方法，用start()方法启动线程。&lt;/li&gt;
+&lt;li&gt;实现Runnable接口，函数式传给Thread构造函数。&lt;/li&gt;
+&lt;li&gt;实现Callable接口，并将其封装入FutureTask，最后函数式传给Thread构造函数。&lt;/li&gt;
+&lt;li&gt;Executor框架，executor.submit即可。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;如何停止线程运行&#34;&gt;如何停止线程运行
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在run方法中判断interrupted状态，如果是的话抛出异常/return。然后直接调用interrupt方法即可。如果线程正在执行Thread.sleep() / Thread.join() / Object.wait()等可中断方法，则解除阻塞并抛出异常。&lt;/li&gt;
+&lt;li&gt;根据约定变量显式判断&lt;/li&gt;
+&lt;li&gt;通过executor + future取消任务&lt;/li&gt;
+&lt;li&gt;有资源的情况下直接销毁资源，会弹出异常以退出&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;java线程的状态&#34;&gt;Java线程的状态
+&lt;/h2&gt;&lt;p&gt;NEW：尚未start&lt;/p&gt;
+&lt;p&gt;RUNNABLE：已经start等待调度/正在运行&lt;/p&gt;
+&lt;p&gt;BLOCKED：等待锁&lt;/p&gt;
+&lt;p&gt;WAITING：等待零一线程操作&lt;/p&gt;
+&lt;p&gt;TIMED_WAITING：具有等待时间的等待&lt;/p&gt;
+&lt;p&gt;TERMINATED：终止&lt;/p&gt;
+&lt;h3 id=&#34;sleep-vs-wait&#34;&gt;sleep vs wait
+&lt;/h3&gt;&lt;p&gt;sleep：任意位置调用，和锁无关，超时释放，释放cpu不是放锁&lt;/p&gt;
+&lt;p&gt;wait：有锁下调用，notify/超时唤醒，作用主要是释放锁&lt;/p&gt;
+&lt;h3 id=&#34;blocked-vs-waiting&#34;&gt;blocked vs waiting
+&lt;/h3&gt;&lt;p&gt;blocked：锁竞争失败进入，到锁可用解开阻塞，自动触发&lt;/p&gt;
+&lt;p&gt;waiting：特定方法主动唤醒&lt;/p&gt;
+&lt;h2 id=&#34;线程的通信方式&#34;&gt;线程的通信方式
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Object类下wait/notify/notifyAll方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lock和Condition接口：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Condition&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;newCondition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;await&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;condition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于volatile的共享变量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CountDownLatch：计数同步辅助类&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;latch&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CountDownLatch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threadCount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;latch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;countDown&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;latch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;await&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CyclicBarrier：线程内部屏障点，等待所有/一定线程到达屏障点后继续运行。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;barrier&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CyclicBarrier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threadCount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{});&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Thread&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;barrier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;await&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Semaphore：计数信号量，允许控制访问资源的线程数量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Semaphore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;permits&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 构造函数&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;acquire&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 线程内部aquire&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;release&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 线程内部释放&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;java线程安全的保证&#34;&gt;Java线程安全的保证
+&lt;/h2&gt;&lt;p&gt;synchronized：通过监视器锁实现的同步代码块&lt;/p&gt;
+&lt;p&gt;volatile：通过直写内存/失效通知机制实现的确保变量在不同线程中的观测一致性&lt;/p&gt;
+&lt;p&gt;lock/ReentrantLock：更多锁&lt;/p&gt;
+&lt;p&gt;Atomic：原子操作&lt;/p&gt;
+&lt;p&gt;ThreadLocal：当前线程中的存储空间&lt;/p&gt;
+&lt;p&gt;并发安全集合&lt;/p&gt;
+&lt;p&gt;JUC工具类：如信号量/屏障等&lt;/p&gt;
+&lt;h3 id=&#34;常见锁&#34;&gt;常见锁
+&lt;/h3&gt;&lt;h4 id=&#34;监视器锁sychronized&#34;&gt;&lt;strong&gt;监视器锁（sychronized）：&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;Java提供的原子性内置锁，在同步的代码块前后加上monitorrenter和monitorexit字节码指令，底层依赖操作系统互斥锁。&lt;/p&gt;
+&lt;p&gt;接着就是可重入锁的逻辑。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.6后的锁升级机制：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No Lock -&amp;gt; （首次访问同步块）-&amp;gt; Biased Lock(比对线程ID) -&amp;gt; (二线程锁竞争)&lt;/p&gt;
+&lt;p&gt;-&amp;gt; 轻量级锁 (CAS) -&amp;gt; (CAS失败 )-&amp;gt; 大锁&lt;/p&gt;
+&lt;p&gt;**轻量级锁：**线程备份锁对象Mark Word，CAS Mark Word指向备份的指针&lt;/p&gt;
+&lt;p&gt;CAS成功：线程获得锁&lt;/p&gt;
+&lt;p&gt;CAS失败：检查是否重入，如果重入则进入，如果不是则锁升级&lt;/p&gt;
+&lt;p&gt;解锁：用CAS还原Mark Word&lt;/p&gt;
+&lt;p&gt;还原成功：锁释放&lt;/p&gt;
+&lt;p&gt;还原失败：已经是大锁，唤醒阻塞线程&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优化&lt;/strong&gt;：锁消除（无竞争可能性消除锁）、锁粗化（多锁合一）、自旋锁（减少上下文切换开销）&lt;/p&gt;
+&lt;h4 id=&#34;reentrantlock&#34;&gt;&lt;strong&gt;ReentrantLock&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;引用计数，进入+1，出去-1，是0则释放锁。&lt;/p&gt;
+&lt;h4 id=&#34;其他锁&#34;&gt;其他锁
+&lt;/h4&gt;&lt;p&gt;读写锁：读写分离的锁，读和写线程分开获取锁&lt;/p&gt;
+&lt;p&gt;乐观锁：版本号比较&lt;/p&gt;
+&lt;p&gt;自旋锁/互斥锁：见OS&lt;/p&gt;
+&lt;h4 id=&#34;aqs-abstractqueuedsynchronizer&#34;&gt;AQS (AbstractQueuedSynchronizer)
+&lt;/h4&gt;&lt;h5 id=&#34;1-同步状态&#34;&gt;1. &lt;strong&gt;同步状态（&lt;code&gt;int state&lt;/code&gt;）&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;核心共享变量（&lt;code&gt;volatile int state&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;由子类定义语义（例如）：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ReentrantLock&lt;/code&gt;：重入次数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Semaphore&lt;/code&gt;：剩余许可数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CountDownLatch&lt;/code&gt;：未完成计数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;2-fifo-等待队列clh-变体&#34;&gt;2. &lt;strong&gt;FIFO 等待队列（CLH 变体）&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;双向链表&lt;/strong&gt;结构（非严格的 CLH 队列）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;节点 &lt;code&gt;Node&lt;/code&gt;存储线程 + 等待状态：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;static final class Node {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volatile int waitStatus;   // 状态：CANCELLED、SIGNAL、CONDITION等
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volatile Node prev;        // 前驱节点
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volatile Node next;        // 后继节点
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    volatile Thread thread;    // 等待线程
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;3-模板方法模式&#34;&gt;3. &lt;strong&gt;模板方法模式&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;子类仅需实现关键钩子方法：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;模版方法&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;需实现的方法&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;职责&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;acquire()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;tryAcquire()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;尝试独占获取锁（需操作 state）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;release()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;tryRelease()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;尝试独占释放锁&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;acquireShared()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;tryAcquireShared()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;尝试共享获取（如 Semaphore 许可）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;releaseShared()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;tryReleaseShared()&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;尝试共享释放&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;4-线程阻塞与唤醒机制&#34;&gt;4. &lt;strong&gt;线程阻塞与唤醒机制&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LockSupport.park()&lt;/code&gt;：阻塞当前线程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LockSupport.unpark(thread)&lt;/code&gt;：唤醒指定线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;threadlocal的原理&#34;&gt;ThreadLocal的原理
+&lt;/h2&gt;&lt;p&gt;每个线程中都有一个独立的ThreadLocalMap，这个东西是哈希表，他的key是ThreadLocal，value是值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;线程池的ThreadLocal泄露问题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;由于ThreadLocalMap中的value是强引用，线程不结束GC不能回收，所以由于线程池线程长久运行，导致资源无法自动释放。&lt;/p&gt;
+&lt;h2 id=&#34;cas的aba问题&#34;&gt;CAS的ABA问题
+&lt;/h2&gt;&lt;p&gt;即CS之间存在A-&amp;gt;B-&amp;gt;A的变化，但是CAS会成功。&lt;/p&gt;
+&lt;p&gt;解决方法：维护一个版本号（Java的办法）&lt;/p&gt;
+&lt;h2 id=&#34;volatile的作用&#34;&gt;volatile的作用
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;保证变量对所有线程的可见性&lt;/li&gt;
+&lt;li&gt;禁止重排序优化：保证写在所有读写完成之后，保证读在所有读写之前进行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;公平锁和非公平锁&#34;&gt;公平锁和非公平锁
+&lt;/h2&gt;&lt;p&gt;**公平锁：**先进等待队列，需要切换两次上下文，慢&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;非公平锁&lt;/strong&gt;：先抢锁，失败进等待队列，成功则不需要切换上下文，快&lt;/p&gt;
+&lt;p&gt;synchronized是非公平锁，可重入锁是公平锁。&lt;/p&gt;
+&lt;h2 id=&#34;线程池&#34;&gt;线程池
+&lt;/h2&gt;&lt;h3 id=&#34;线程池7个参数&#34;&gt;线程池7个参数
+&lt;/h3&gt;&lt;p&gt;核心线程数、最大线程数、阻塞队列、最大淘汰时间、工厂类、淘汰策略、时间单位&lt;/p&gt;
+&lt;h3 id=&#34;拒绝策略&#34;&gt;拒绝策略
+&lt;/h3&gt;&lt;p&gt;异常拒绝、默拒绝、主线程执行、抛弃最老任务&lt;/p&gt;
+&lt;h3 id=&#34;线程池参数设置&#34;&gt;线程池参数设置
+&lt;/h3&gt;&lt;p&gt;CPU密集型：CPU核+1&lt;/p&gt;
+&lt;p&gt;IO密集型：CPU核*2&lt;/p&gt;
+&lt;h3 id=&#34;为什么不能用默认executor&#34;&gt;为什么不能用默认executor
+&lt;/h3&gt;&lt;p&gt;FixedThreadPool内部使用无界任务队列，导致如果消费速度小于生产速度，会无限堆积，导致内存占用过多OOM。&lt;/p&gt;
+&lt;p&gt;CachedThreadPool内部使用无界任务队列，且核心线程数为0，如果生产速度大于消费速度，会导致线程无限创建，导致CPU过载等问题。&lt;/p&gt;
 </description>
         </item>
         <item>

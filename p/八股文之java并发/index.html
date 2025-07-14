@@ -308,6 +308,39 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#多线程竞争下的问题">多线程竞争下的问题</a></li>
+    <li><a href="#线程的创建方式">线程的创建方式</a></li>
+    <li><a href="#如何停止线程运行">如何停止线程运行</a></li>
+    <li><a href="#java线程的状态">Java线程的状态</a>
+      <ol>
+        <li><a href="#sleep-vs-wait">sleep vs wait</a></li>
+        <li><a href="#blocked-vs-waiting">blocked vs waiting</a></li>
+      </ol>
+    </li>
+    <li><a href="#线程的通信方式">线程的通信方式</a></li>
+    <li><a href="#java线程安全的保证">Java线程安全的保证</a>
+      <ol>
+        <li><a href="#常见锁">常见锁</a>
+          <ol>
+            <li><a href="#监视器锁sychronized"><strong>监视器锁（sychronized）：</strong></a></li>
+            <li><a href="#reentrantlock"><strong>ReentrantLock</strong></a></li>
+            <li><a href="#其他锁">其他锁</a></li>
+            <li><a href="#aqs-abstractqueuedsynchronizer">AQS (AbstractQueuedSynchronizer)</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#threadlocal的原理">ThreadLocal的原理</a></li>
+    <li><a href="#cas的aba问题">CAS的ABA问题</a></li>
+    <li><a href="#volatile的作用">volatile的作用</a></li>
+    <li><a href="#公平锁和非公平锁">公平锁和非公平锁</a></li>
+    <li><a href="#线程池">线程池</a>
+      <ol>
+        <li><a href="#线程池7个参数">线程池7个参数</a></li>
+        <li><a href="#拒绝策略">拒绝策略</a></li>
+        <li><a href="#线程池参数设置">线程池参数设置</a></li>
+        <li><a href="#为什么不能用默认executor">为什么不能用默认executor</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -376,7 +409,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -392,14 +425,252 @@
     
     
     <h2 id="多线程竞争下的问题">多线程竞争下的问题
-</h2><p>原子性：互斥访问，原子操作atomic/串行访问synchronized限制。</p>
-<p>可见性：直接操作主内存，使用synchronized和volatile实现。</p>
-<p>volatile</p>
+</h2><p>**原子性：**互斥访问，原子操作atomic/串行访问synchronized限制。</p>
+<p>**可见性：**直接操作主内存，使用synchronized和volatile实现。</p>
+<p><strong>volatile</strong></p>
 <ol>
 <li>读写直达主内存，绕过缓存。</li>
-<li>写以后其他CPU变量的缓存自动失效强制重新加载</li>
+<li>写以后其他CPU变量的缓存自动失效强制重新加载。</li>
 </ol>
-<p>有序性：</p>
+<p><strong>有序性：</strong> 指令重排序导致的线程观测其他线程指令执行顺序不一致。</p>
+<h2 id="线程的创建方式">线程的创建方式
+</h2><ol>
+<li>继承Thread类，重写run()方法，用start()方法启动线程。</li>
+<li>实现Runnable接口，函数式传给Thread构造函数。</li>
+<li>实现Callable接口，并将其封装入FutureTask，最后函数式传给Thread构造函数。</li>
+<li>Executor框架，executor.submit即可。</li>
+</ol>
+<h2 id="如何停止线程运行">如何停止线程运行
+</h2><ol>
+<li>在run方法中判断interrupted状态，如果是的话抛出异常/return。然后直接调用interrupt方法即可。如果线程正在执行Thread.sleep() / Thread.join() / Object.wait()等可中断方法，则解除阻塞并抛出异常。</li>
+<li>根据约定变量显式判断</li>
+<li>通过executor + future取消任务</li>
+<li>有资源的情况下直接销毁资源，会弹出异常以退出</li>
+</ol>
+<h2 id="java线程的状态">Java线程的状态
+</h2><p>NEW：尚未start</p>
+<p>RUNNABLE：已经start等待调度/正在运行</p>
+<p>BLOCKED：等待锁</p>
+<p>WAITING：等待零一线程操作</p>
+<p>TIMED_WAITING：具有等待时间的等待</p>
+<p>TERMINATED：终止</p>
+<h3 id="sleep-vs-wait">sleep vs wait
+</h3><p>sleep：任意位置调用，和锁无关，超时释放，释放cpu不是放锁</p>
+<p>wait：有锁下调用，notify/超时唤醒，作用主要是释放锁</p>
+<h3 id="blocked-vs-waiting">blocked vs waiting
+</h3><p>blocked：锁竞争失败进入，到锁可用解开阻塞，自动触发</p>
+<p>waiting：特定方法主动唤醒</p>
+<h2 id="线程的通信方式">线程的通信方式
+</h2><ol>
+<li>
+<p>Object类下wait/notify/notifyAll方法。</p>
+</li>
+<li>
+<p>Lock和Condition接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Condition</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lock</span><span class="p">.</span><span class="na">newCondition</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">condition</span><span class="p">.</span><span class="na">await</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">condition</span><span class="p">.</span><span class="na">signal</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>基于volatile的共享变量</p>
+</li>
+<li>
+<p>CountDownLatch：计数同步辅助类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CountDownLatch</span><span class="w"> </span><span class="n">latch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CountDownLatch</span><span class="p">(</span><span class="n">threadCount</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">latch</span><span class="p">.</span><span class="na">countDown</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">latch</span><span class="p">.</span><span class="na">await</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>CyclicBarrier：线程内部屏障点，等待所有/一定线程到达屏障点后继续运行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">barrier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CyclicBarrier</span><span class="p">(</span><span class="n">threadCount</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">barrier</span><span class="p">.</span><span class="na">await</span><span class="p">(;)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Semaphore：计数信号量，允许控制访问资源的线程数量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Semaphore</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">permits</span><span class="p">);</span><span class="w"> </span><span class="c1">// 构造函数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">acquire</span><span class="p">();</span><span class="w"> </span><span class="c1">// 线程内部aquire</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">release</span><span class="p">();</span><span class="w"> </span><span class="c1">// 线程内部释放</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="java线程安全的保证">Java线程安全的保证
+</h2><p>synchronized：通过监视器锁实现的同步代码块</p>
+<p>volatile：通过直写内存/失效通知机制实现的确保变量在不同线程中的观测一致性</p>
+<p>lock/ReentrantLock：更多锁</p>
+<p>Atomic：原子操作</p>
+<p>ThreadLocal：当前线程中的存储空间</p>
+<p>并发安全集合</p>
+<p>JUC工具类：如信号量/屏障等</p>
+<h3 id="常见锁">常见锁
+</h3><h4 id="监视器锁sychronized"><strong>监视器锁（sychronized）：</strong>
+</h4><p>Java提供的原子性内置锁，在同步的代码块前后加上monitorrenter和monitorexit字节码指令，底层依赖操作系统互斥锁。</p>
+<p>接着就是可重入锁的逻辑。</p>
+<p><strong>1.6后的锁升级机制：</strong></p>
+<p>No Lock -&gt; （首次访问同步块）-&gt; Biased Lock(比对线程ID) -&gt; (二线程锁竞争)</p>
+<p>-&gt; 轻量级锁 (CAS) -&gt; (CAS失败 )-&gt; 大锁</p>
+<p>**轻量级锁：**线程备份锁对象Mark Word，CAS Mark Word指向备份的指针</p>
+<p>CAS成功：线程获得锁</p>
+<p>CAS失败：检查是否重入，如果重入则进入，如果不是则锁升级</p>
+<p>解锁：用CAS还原Mark Word</p>
+<p>还原成功：锁释放</p>
+<p>还原失败：已经是大锁，唤醒阻塞线程</p>
+<p><strong>优化</strong>：锁消除（无竞争可能性消除锁）、锁粗化（多锁合一）、自旋锁（减少上下文切换开销）</p>
+<h4 id="reentrantlock"><strong>ReentrantLock</strong>
+</h4><p>引用计数，进入+1，出去-1，是0则释放锁。</p>
+<h4 id="其他锁">其他锁
+</h4><p>读写锁：读写分离的锁，读和写线程分开获取锁</p>
+<p>乐观锁：版本号比较</p>
+<p>自旋锁/互斥锁：见OS</p>
+<h4 id="aqs-abstractqueuedsynchronizer">AQS (AbstractQueuedSynchronizer)
+</h4><h5 id="1-同步状态">1. <strong>同步状态（<code>int state</code>）</strong>
+</h5><ul>
+<li>核心共享变量（<code>volatile int state</code>）</li>
+<li>由子类定义语义（例如）：
+<ul>
+<li><code>ReentrantLock</code>：重入次数</li>
+<li><code>Semaphore</code>：剩余许可数</li>
+<li><code>CountDownLatch</code>：未完成计数</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-fifo-等待队列clh-变体">2. <strong>FIFO 等待队列（CLH 变体）</strong>
+</h5><ul>
+<li>
+<p><strong>双向链表</strong>结构（非严格的 CLH 队列）</p>
+</li>
+<li>
+<p>节点 <code>Node</code>存储线程 + 等待状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">static final class Node {
+</span></span><span class="line"><span class="cl">    volatile int waitStatus;   // 状态：CANCELLED、SIGNAL、CONDITION等
+</span></span><span class="line"><span class="cl">    volatile Node prev;        // 前驱节点
+</span></span><span class="line"><span class="cl">    volatile Node next;        // 后继节点
+</span></span><span class="line"><span class="cl">    volatile Thread thread;    // 等待线程
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h5 id="3-模板方法模式">3. <strong>模板方法模式</strong>
+</h5><p>子类仅需实现关键钩子方法：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center"><strong>模版方法</strong></th>
+          <th style="text-align: center"><strong>需实现的方法</strong></th>
+          <th style="text-align: center"><strong>职责</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>acquire()</code></td>
+          <td style="text-align: center"><code>tryAcquire()</code></td>
+          <td style="text-align: center">尝试独占获取锁（需操作 state）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>release()</code></td>
+          <td style="text-align: center"><code>tryRelease()</code></td>
+          <td style="text-align: center">尝试独占释放锁</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>acquireShared()</code></td>
+          <td style="text-align: center"><code>tryAcquireShared()</code></td>
+          <td style="text-align: center">尝试共享获取（如 Semaphore 许可）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>releaseShared()</code></td>
+          <td style="text-align: center"><code>tryReleaseShared()</code></td>
+          <td style="text-align: center">尝试共享释放</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="4-线程阻塞与唤醒机制">4. <strong>线程阻塞与唤醒机制</strong>
+</h5><ul>
+<li><code>LockSupport.park()</code>：阻塞当前线程</li>
+<li><code>LockSupport.unpark(thread)</code>：唤醒指定线程</li>
+</ul>
+<h2 id="threadlocal的原理">ThreadLocal的原理
+</h2><p>每个线程中都有一个独立的ThreadLocalMap，这个东西是哈希表，他的key是ThreadLocal，value是值。</p>
+<p><strong>线程池的ThreadLocal泄露问题</strong></p>
+<p>由于ThreadLocalMap中的value是强引用，线程不结束GC不能回收，所以由于线程池线程长久运行，导致资源无法自动释放。</p>
+<h2 id="cas的aba问题">CAS的ABA问题
+</h2><p>即CS之间存在A-&gt;B-&gt;A的变化，但是CAS会成功。</p>
+<p>解决方法：维护一个版本号（Java的办法）</p>
+<h2 id="volatile的作用">volatile的作用
+</h2><ol>
+<li>保证变量对所有线程的可见性</li>
+<li>禁止重排序优化：保证写在所有读写完成之后，保证读在所有读写之前进行。</li>
+</ol>
+<h2 id="公平锁和非公平锁">公平锁和非公平锁
+</h2><p>**公平锁：**先进等待队列，需要切换两次上下文，慢</p>
+<p><strong>非公平锁</strong>：先抢锁，失败进等待队列，成功则不需要切换上下文，快</p>
+<p>synchronized是非公平锁，可重入锁是公平锁。</p>
+<h2 id="线程池">线程池
+</h2><h3 id="线程池7个参数">线程池7个参数
+</h3><p>核心线程数、最大线程数、阻塞队列、最大淘汰时间、工厂类、淘汰策略、时间单位</p>
+<h3 id="拒绝策略">拒绝策略
+</h3><p>异常拒绝、默拒绝、主线程执行、抛弃最老任务</p>
+<h3 id="线程池参数设置">线程池参数设置
+</h3><p>CPU密集型：CPU核+1</p>
+<p>IO密集型：CPU核*2</p>
+<h3 id="为什么不能用默认executor">为什么不能用默认executor
+</h3><p>FixedThreadPool内部使用无界任务队列，导致如果消费速度小于生产速度，会无限堆积，导致内存占用过多OOM。</p>
+<p>CachedThreadPool内部使用无界任务队列，且核心线程数为0，如果生产速度大于消费速度，会导致线程无限创建，导致CPU过载等问题。</p>
 
 </section>
 
