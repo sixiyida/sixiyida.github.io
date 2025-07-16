@@ -7,7 +7,31 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>sixiyida</copyright>
-        <lastBuildDate>Thu, 26 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://sixiyida.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Infrastructure</title>
+        <link>https://sixiyida.github.io/tags/infrastructure/</link>
+        <pubDate>Tue, 15 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/infrastructure/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Java</title>
+        <link>https://sixiyida.github.io/tags/java/</link>
+        <pubDate>Tue, 15 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/java/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>LLM</title>
+        <link>https://sixiyida.github.io/tags/llm/</link>
+        <pubDate>Tue, 15 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://sixiyida.github.io/tags/llm/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Agent Development</title>
         <link>https://sixiyida.github.io/tags/agent-development/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
@@ -24,14 +48,6 @@
         <description></description>
         </item>
         <item>
-        <title>LLM</title>
-        <link>https://sixiyida.github.io/tags/llm/</link>
-        <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://sixiyida.github.io/tags/llm/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>Observation</title>
         <link>https://sixiyida.github.io/tags/observation/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
@@ -45,14 +61,6 @@
         <pubDate>Wed, 25 Jun 2025 00:00:00 +0000</pubDate>
         
         <guid>https://sixiyida.github.io/tags/distributed-system/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Java</title>
-        <link>https://sixiyida.github.io/tags/java/</link>
-        <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://sixiyida.github.io/tags/java/</guid>
         <description></description>
         </item>
         <item>
