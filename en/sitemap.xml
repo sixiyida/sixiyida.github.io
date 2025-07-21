@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sixiyida.github.io/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -16,10 +16,16 @@
                 />
   </url><url>
     <loc>https://sixiyida.github.io/categories/agent-development/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sixiyida.github.io/tags/agent-development/</loc>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sixiyida.github.io/tags/backend-development/</loc>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/categories/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -31,26 +37,20 @@
                 href="https://sixiyida.github.io/categories/"
                 />
   </url><url>
-    <loc>https://sixiyida.github.io/tags/infrastructure/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <loc>https://sixiyida.github.io/tags/distributed-system/</loc>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://sixiyida.github.io/tags/java/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <loc>https://sixiyida.github.io/categories/java/</loc>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://sixiyida.github.io/tags/llm/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <loc>https://sixiyida.github.io/p/mcp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/post/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/categories/programing/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/p/spring-ai-alibaba-graph-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/tags/</loc>
-    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -62,13 +62,22 @@
                 href="https://sixiyida.github.io/tags/"
                 />
   </url><url>
-    <loc>https://sixiyida.github.io/tags/agent-development/</loc>
-    <lastmod>2025-06-26T00:00:00+00:00</lastmod>
+    <loc>https://sixiyida.github.io/tags/infrastructure/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sixiyida.github.io/tags/java/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sixiyida.github.io/tags/llm/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sixiyida.github.io/categories/programing/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://sixiyida.github.io/p/spring-ai-alibaba-graph-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/categories/backend-development/</loc>
-    <lastmod>2025-06-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/tags/backend-development/</loc>
     <lastmod>2025-06-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/categories/distributed-system/</loc>
@@ -79,9 +88,6 @@
   </url><url>
     <loc>https://sixiyida.github.io/tags/observation/</loc>
     <lastmod>2025-06-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/tags/distributed-system/</loc>
-    <lastmod>2025-06-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/p/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7observation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2025-06-25T00:00:00+00:00</lastmod>
@@ -127,9 +133,6 @@
   </url><url>
     <loc>https://sixiyida.github.io/p/%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2025-06-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://sixiyida.github.io/categories/java/</loc>
-    <lastmod>2025-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://sixiyida.github.io/tags/spring/</loc>
     <lastmod>2025-05-30T00:00:00+00:00</lastmod>
